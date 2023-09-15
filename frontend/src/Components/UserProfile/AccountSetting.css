@@ -1,0 +1,14 @@
+.accountsetting{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.accountsetting h1{
+    padding: 10px 20px;
+}
+
+.accountsetting.form{
+    
+}
