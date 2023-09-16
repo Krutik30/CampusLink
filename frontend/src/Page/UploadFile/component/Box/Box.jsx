@@ -10,7 +10,7 @@ function Box() {
     <div className="box_1">
       <div className="description">
         <h2>Emproving Your Profile</h2>
-        <p>"Enhance your student profile with the power of achievement - upload your certificate now!"</p>
+        <p>Enhance your student profile with the power of achievement - upload your certificate now!</p>
       </div>
       
     </div>

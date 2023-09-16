@@ -24,6 +24,10 @@ function Navbar() {
       type="button"
       value="Upload"
       onClick={togglePopup}
+      style={{
+        position: 'relative',
+        top: 50
+      }}
     />
     
     {isPopupOpen && <Popup
