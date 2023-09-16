@@ -4,6 +4,8 @@ import Navbar from '../../Components/Navbar/Navbar'
 import UserSidebar from '../../Components/UserProfile/UserSidebar'
 import AccountSetting from '../../Components/UserProfile/AccountSetting'
 import './UserProfile.css'
+import ChangePassword from '../../Components/UserProfile/ChangePassword'
+import TimeTable from '../../Components/UserProfile/TimeTable'
 
 function UserProfile() {
     const {activepage} = useParams()
@@ -21,6 +23,8 @@ function UserProfile() {
         </div>
         <div className="right">
             {activepage === 'accountsettings' && <AccountSetting/>}
+            {activepage === 'changepassword' && <ChangePassword/>}
+            {activepage === 'yourtimetable' && <TimeTable/>}
         </div>
     </div>
     </div>
