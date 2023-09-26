@@ -41,9 +41,10 @@ function AccountSetting() {
         <label htmlFor='year'>Passout year</label>
         <input type='text' id='year' name='year'></input>
       </div>
-        <button className='button'>Save Changes</button>
+        
   
     </div>
+    <button className='button'>Save Changes</button>
     </div>
   )
 }
