@@ -2,34 +2,32 @@ import React from 'react'
 import { useState } from 'react'
 import './SignUp.css'
 
-//import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function SignUp() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  const collectData =()=>{
-    console.log(name,email,password)
-  }
-  //backend 
-  {/* const collectData=async()=>{
-        console.warn(name,email,password)
-        let result = await fetch('http://localhost:5000/register',{
-            method: 'post',
-            body:JSON.stringify( {name,email,password}),
-            headers: {
-                'content-type':'application/json'
-            }
-        })
-        result = await result.json()
-        console.warn(result)
-        if(result){
-            navigate('/home')
+  const collectData=async()=>{
+    console.warn(name,email,password)
+    let result = await fetch('http://localhost:5000/register',{
+        method: 'post',
+        body:JSON.stringify( {name,email,password}),
+        headers: {
+            'content-type':'application/json'
         }
-      */}
+    })
+    result = await result.json()
+    console.warn(result)
+    if(result){
+        navigate('/home')
+    }
+  
+  }
+   
 
 
   return (
