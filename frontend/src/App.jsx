@@ -3,7 +3,7 @@ import Home from './Page/HomePage/Home'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import './App.css'
-import Signup from './Page/Authentication/Signup';
+import SignUp from './Page/Authentication/SignUp';
 import Login from './Page/Authentication/Login';
 import Forgotpassword from './Page/Authentication/Forgotpassword';
 import UserProfile from './Page/User/UserProfile';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Signup/>} />
+          <Route path="/signup" element={<SignUp/>} />
           <Route path="/forgotpassword" element={<Forgotpassword/>} />
           <Route path="/prakrutiTest" element={<CertificateUpload />} />
           <Route path="/hencyTest" element={<CertificateUploadHency />} />
