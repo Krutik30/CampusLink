@@ -1,3 +1,3 @@
-const mongoose = require('mongoose')
+import { connect } from 'mongoose'
 
-mongoose.connect('mongodb://127.0.0.1/CampusLink')
+connect('mongodb://127.0.0.1/CampusLink')
