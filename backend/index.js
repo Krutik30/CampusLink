@@ -1,6 +1,6 @@
 import express, { json } from 'express'
-import config from './db/config'
-import User from './db/Users'
+// import config from './db/config.js'
+import User from './db/Users.js'
 import cors from 'cors'
 
 
