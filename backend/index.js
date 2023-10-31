@@ -3,7 +3,7 @@ import express, { json } from 'express'
 import User from './db/Users.js'
 import cors from 'cors'
 
-
+const port = 3000
 const app = express()
 app.use(cors())
 app.use(json())
@@ -26,6 +26,6 @@ app.post("/login", async (req, resp) => {
     }
 })
 
-app.listen(3000, () => {
-    console.log('yess i am listening');
+app.listen(port, () => {
+    console.log('yess i am listening to', port);
 })
