@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CertificateUpload.css';
-import Box from './component/Box/Box';
+import Box from './component/Box';
 
 function CertificateUpload() {
   const [eventName, setEventName] = useState('');
@@ -34,29 +34,27 @@ function CertificateUpload() {
   };
 
   return (
-    <>
+    <div className="certificate-upload">
       <Box />
+      <h1 id="uc">Upload Certificate</h1>
       <div>
-        <h1 id="uc">Upload Certificate</h1>
-        <div>
-          <label for="ename">Event Name:</label>
-          <input type="text" id="ename" value={eventName} onChange={handleEventNameChange} />
-        </div>
-        <div>
-          <label for="edate">Event Date:</label>
-          <input type="date" id="edate" value={eventDate} onChange={handleEventDateChange} />
-        </div>
-        <div>
-          <label for="certy">Certificate Level:</label>
-          <input type="text" id="certy" value={certificateLevel} onChange={handleCertificateLevelChange} />
-        </div>
-        <div>
-          <label for="upcerty">Upload Certificate (PDF):</label>
-          <input type="file" id="upcerty" accept=".pdf" onChange={handleFileChange} />
-        </div>
-        <button onClick={handleUpload}>Upload</button>
+        <label htmlFor="ename">Event Name:</label>
+        <input type="text" id="ename" value={eventName} onChange={handleEventNameChange} />
       </div>
-    </>
+      <div>
+        <label htmlFor="edate">Event Date:</label>
+        <input type="date" id="edate" value={eventDate} onChange={handleEventDateChange} />
+      </div>
+      <div>
+        <label htmlFor="certy">Certificate Level:</label>
+        <input type="text" id="certy" value={certificateLevel} onChange={handleCertificateLevelChange} />
+      </div>
+      <div>
+        <label htmlFor="upcerty">Upload Certificate (PDF):</label>
+        <input type="file" id="upcerty" accept=".pdf" onChange={handleFileChange} />
+      </div>
+      <button onClick={handleUpload}>Upload</button>
+    </div>
   );
 }
 
