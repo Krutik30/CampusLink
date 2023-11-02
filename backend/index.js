@@ -59,7 +59,6 @@ app.post("/getUserAcadamics", async (req, res) => {
     try {
         const userDetails = await UserAcadamics.findOne(query);
         if (userDetails) {
-            console.log(userDetails);
             res.send(userDetails);
         } else {
             res.status(404).send('User not found');
@@ -71,17 +70,25 @@ app.post("/getUserAcadamics", async (req, res) => {
 });
 
 
-app.post("/userAcadamics", async (req, res) => {
-    try{
-        const userDetails = new UserAcadamics(req.body)
-        console.log(userDetails)
-        const result = (await userDetails.save()).toObject()
-        console.log(result)
-        res.send(result)
-    }catch(err){
-        console.error(err)
+app.put("/userAcadamics", async (req, res) => {
+    try {
+        const email = req.body.email;
+        const updateData = req.body;
+
+        const result = await UserAcadamics.updateOne({ email }, updateData);
+
+        if (result.modifiedCount > 0) {
+            const updatedUserDetails = await UserAcadamics.findOne({ email });
+            res.send(updatedUserDetails);
+        } else {
+            res.status(404).send('User not found');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
     }
-})
+});
+
 
 app.listen(port, () => {
     console.log('yess i am listening to', port);

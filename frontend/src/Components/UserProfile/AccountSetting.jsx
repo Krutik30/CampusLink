@@ -1,7 +1,7 @@
 import React from 'react';
 import './AccountSetting.css';
 
-let userDetails = await fetch('http://localhost:3000/getUserAcadamics', {
+const userDetailsResponse = await fetch('http://localhost:3000/getUserAcadamics', {
   method: 'post',
   body: JSON.stringify({
     email: JSON.parse(localStorage.getItem('user')).email
@@ -9,11 +9,12 @@ let userDetails = await fetch('http://localhost:3000/getUserAcadamics', {
   headers: {
     'Content-type': 'application/json'
   }
-}).then(value => console.log(value))
+});
+
+const userDetails = await userDetailsResponse.json();
 
 function AccountSetting() {
 
-  console.log(userDetails)
   async function submitForm(event) {
     event.preventDefault();
   
@@ -25,13 +26,15 @@ function AccountSetting() {
     });
   
     let result = await fetch('http://localhost:3000/userAcadamics', {
-      method: 'post',
+      method: 'put',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json'
       }
     })
-    console.log(result)
+    .then(response => response.json())
+    .then(value => console.log(value))
+    .catch(err => console.log(err))
   }
   
 
@@ -43,37 +46,37 @@ function AccountSetting() {
         <div className="form">
           <div className="form-group">
             <label htmlFor='name'>Your Name </label>
-            <input type='text' id='name' name='name'></input>
+            <input type='text' id='name' name='name' defaultValue={userDetails.name}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='enrollment-no'>Enrollment No. </label>
-            <input type='text' id='enrollment-no' name='enrollment-no'></input>
+            <input type='text' id='enrollment-no' name='enrollment-no' defaultValue={userDetails['enrollment-no']}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='email'>Email </label>
-            <input type='email' id='email' name='email'></input>
+            <input type='email' id='email' name='email' defaultValue={userDetails.email}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='mobile'>Mobile No</label>
-            <input type='text' id='mobile' name='mobile'></input>
+            <input type='text' id='mobile' name='mobile' defaultValue={userDetails.mobile}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='department'>Department</label>
-            <input type='text' id='department' name='department'></input>
+            <input type='text' id='department' name='department' defaultValue={userDetails.department}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='batch'>Batch</label>
-            <input type='text' id='batch' name='batch'></input>
+            <input type='text' id='batch' name='batch' defaultValue={userDetails.batch}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='year'>Passout year</label>
-            <input type='text' id='year' name='year'></input>
+            <input type='text' id='year' name='year' defaultValue={userDetails.year}></input>
           </div>
         </div>
         <button type='submit' className='button'>Save Changes</button>
