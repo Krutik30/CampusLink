@@ -1,35 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CertificateUpload.css';
 import Box from './component/Box';
 
 function CertificateUpload() {
-  const [eventName, setEventName] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [certificateLevel, setCertificateLevel] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleEventNameChange = (e) => {
-    setEventName(e.target.value);
-  };
+    const formData = new FormData(event.target);
 
-  const handleEventDateChange = (e) => {
-    setEventDate(e.target.value);
-  };
+    try {
+      const response = await fetch('http://localhost:3000/uploadCertificate', {
+        method: 'POST',
+        body: formData
+      });
 
-  const handleCertificateLevelChange = (e) => {
-    setCertificateLevel(e.target.value);
-  };
-
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
-
-  const handleUpload = () => {
-    if (eventName && eventDate && certificateLevel && selectedFile) {
-      // You can add code here to send the data to the backend for file upload and storage.
-      console.log('Uploading...');
-    } else {
-      alert('Please fill in all fields and select a file');
+      if (response.ok) {
+        console.log('Certificate uploaded successfully!');
+      } else {
+        console.error('Error uploading certificate');
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -37,23 +28,33 @@ function CertificateUpload() {
     <div className="certificate-upload">
       <Box />
       <h1 id="uc">Upload Certificate</h1>
-      <div>
-        <label htmlFor="ename">Event Name:</label>
-        <input type="text" id="ename" value={eventName} onChange={handleEventNameChange} />
-      </div>
-      <div>
-        <label htmlFor="edate">Event Date:</label>
-        <input type="date" id="edate" value={eventDate} onChange={handleEventDateChange} />
-      </div>
-      <div>
-        <label htmlFor="certy">Certificate Level:</label>
-        <input type="text" id="certy" value={certificateLevel} onChange={handleCertificateLevelChange} />
-      </div>
-      <div>
-        <label htmlFor="upcerty">Upload Certificate (PDF):</label>
-        <input type="file" id="upcerty" accept=".pdf" onChange={handleFileChange} />
-      </div>
-      <button onClick={handleUpload}>Upload</button>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="certName">Certification Event Name:</label>
+          <input type="text" id="certName" name="eventName" />
+        </div>
+        <div>
+          <label htmlFor="eventDate">Certification Event Date:</label>
+          <input type="date" id="eventDate" name="eventDate" />
+        </div>
+        <div>
+          <label htmlFor="eventPlace">Event Place:</label>
+          <input type="text" id="eventPlace" name="eventPlace" />
+        </div>
+        <div>
+          <label htmlFor="eventType">Field of Event:</label>
+          <input type="text" id="eventType" name="eventType" />
+        </div>
+        <div>
+          <label htmlFor="mainActivity">Main Activity:</label>
+          <input type="text" id="mainActivity" name="mainActivity" />
+        </div>
+        <div>
+          <label htmlFor="certificateFile">Upload Certificate (PDF):</label>
+          <input type="file" id="certificateFile" name="certificateFile" accept=".pdf" />
+        </div>
+        <button type="submit">Upload</button>
+      </form>
     </div>
   );
 }

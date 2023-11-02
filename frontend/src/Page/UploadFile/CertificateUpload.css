@@ -1,4 +1,78 @@
 /* CertificateUpload.css */
+.certificate-upload {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 5vh;
+  margin-top: 1vh;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-upload h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.certificate-upload label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.certificate-upload input,
+.certificate-upload button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-upload .file-input-container {
+  position: relative;
+}
+
+.certificate-upload .custom-file-input {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.certificate-upload .custom-file-input:hover {
+  background-color: #0056b3;
+}
+
+.certificate-upload .custom-file-input::before {
+  content: "Choose File";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.certificate-upload .file-input-container input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 100px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
 
 .container {
     max-width: 400px;
