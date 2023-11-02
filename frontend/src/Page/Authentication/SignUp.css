@@ -4,9 +4,7 @@
     width: 100%;
     align-items: center;
 }
-.changepassword h1{
-    padding: 10px 20px;
-}
+
 .signup .form{
     display: flex;
     flex-direction:column;
@@ -35,8 +33,10 @@
 }
 .signup .form .form-group input:focus{
     border: 1px solid var(--col1);
+
 }
-  
+
+
 
 
   

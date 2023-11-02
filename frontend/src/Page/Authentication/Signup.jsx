@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './SignUp.css'
 import { useNavigate } from 'react-router-dom'
 
-//import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function SignUp() {
   const [name, setName] = useState("")

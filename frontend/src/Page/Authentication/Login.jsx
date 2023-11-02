@@ -1,18 +1,19 @@
 import React, { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
+
 function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const Navigate = useNavigate()
 
-  // useEffect(()=>{
-  //   const auth = localStorage.getItem('user')
-  //   if(auth){
-  //     Navigate('/')
-  //   }
-  // })
+  useEffect(()=>{
+    const auth = localStorage.getItem('user')
+    if(auth){
+      Navigate('/')
+    }
+  })
 
   const handleLogin = async () => {
   
@@ -25,7 +26,7 @@ function Login() {
     })
     result = await result.json()
     console.log(result)
-    if(result.name){
+    if(result.email){
       localStorage.setItem("user",JSON.stringify(result))
       Navigate('/')
     }
@@ -43,7 +44,7 @@ function Login() {
         <input type='text' className='inputbox' name='email' id='email' placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} value={email} />
         <input type='password' className='inputbox' name='password' id='password' placeholder='Enter Your Password' onChange={(e) => setPassword(e.target.value)} value={password} />
 
-        <button className='button' onClick={handleLogin} type='button'>Login</button>
+        <button className='button1' onClick={handleLogin} type='button'>Login</button>
       </div>
     </div>
   )
