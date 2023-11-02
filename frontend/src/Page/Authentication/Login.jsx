@@ -17,7 +17,7 @@ function Login() {
 
   const handleLogin = async () => {
   
-    let result = await fetch('http://localhost:5000/login', {
+    let result = await fetch('http://localhost:3000/login', {
       method: 'post',
       body: JSON.stringify({ password, email }),
       headers: {
