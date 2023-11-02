@@ -22,7 +22,7 @@ function Navbar() {
                                     <Dropdown.Item href="/login">Login</Dropdown.Item>
                                     <Dropdown.Item href="/signup">Signup</Dropdown.Item>
                                     <Dropdown.Item href="/user/accountsettings">Profile</Dropdown.Item>
-                                    <Dropdown.Item href="#">Logout</Dropdown.Item>
+                                    <Dropdown.Item href="/login">Logout</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>

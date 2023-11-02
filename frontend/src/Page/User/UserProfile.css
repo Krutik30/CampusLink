@@ -7,6 +7,7 @@
     width: 100%;
     justify-content: center;
     margin-top: 10vh;
+    margin-bottom: 10vh;
     gap: 20px  ;    
 
 }
@@ -14,13 +15,13 @@
     width: 20%;
     border: 1px solid rgb(207, 207, 207);
     border-radius: 5px;
-    min-height: 60vh;
+    /* min-height: 60vh; */
 
 }
 .userprofile .userprofilein .right{
     width: 60%;
     border: 1px solid rgb(207, 207, 207);
     border-radius: 5px;
-    min-height: 60vh;
+    /* min-height: 60vh; */
 
 }
