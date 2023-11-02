@@ -26,22 +26,25 @@ nav img{
     width: 100px;
 }
 
-nav .s2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    gap: 3%;
-  }
+.s2{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
   
-  nav .s2 a{
-    text-decoration: none;
-    color: black;
-    font-size: 17px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  nav .s2 a:hover{
-    color: var(--col1);
-  }
+.s2 > a{
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.s2 > a:hover{
+  color: var(--col1);
+}
