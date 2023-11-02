@@ -3,6 +3,7 @@ import express, { json } from 'express'
 import User from './db/Users.js'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import UserAcadamics from './db/UserAcadamics.js'
 
 const port = 3000
 const app = express()
@@ -47,6 +48,38 @@ app.post("/login", async (req, res) => {
     }
     else {
         res.send({ result: 'User not found' })
+    }
+})
+
+app.post("/getUserAcadamics", async (req, res) => {
+    const query = {
+        email: req.body.email
+    };
+
+    try {
+        const userDetails = await UserAcadamics.findOne(query);
+        if (userDetails) {
+            console.log(userDetails);
+            res.send(userDetails);
+        } else {
+            res.status(404).send('User not found');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+app.post("/userAcadamics", async (req, res) => {
+    try{
+        const userDetails = new UserAcadamics(req.body)
+        console.log(userDetails)
+        const result = (await userDetails.save()).toObject()
+        console.log(result)
+        res.send(result)
+    }catch(err){
+        console.error(err)
     }
 })
 
