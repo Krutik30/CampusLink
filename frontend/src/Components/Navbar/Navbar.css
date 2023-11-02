@@ -5,14 +5,7 @@ nav{
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 
 }
-nav svg{
-     width: 25px;
-     height :25px;
-     cursor: pointer;
-}
-nav  svg:hover{
-    color: var(--col1);
-}
+
 nav .s1{
     width: 100%;
     display:flex;
@@ -35,16 +28,4 @@ nav img{
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
-}
-  
-.s2 > a{
-  text-decoration: none;
-  color: black;
-  font-size: 17px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.s2 > a:hover{
-  color: var(--col1);
 }
