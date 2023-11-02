@@ -1,9 +1,10 @@
-import express, { json } from 'express'
+import express, { json } from 'express';
 // import config from './db/config.js'
-import User from './db/Users.js'
+import User from './db/Users.js';
 import cors from 'cors'
 import mongoose from 'mongoose'
 import UserAcadamics from './db/UserAcadamics.js'
+import multer from 'multer'
 
 const port = 3000
 const app = express()
@@ -87,6 +88,37 @@ app.put("/userAcadamics", async (req, res) => {
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
+});
+
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/uploadCertificate', upload.single('certificateFile'), async (req, res) => {
+  try {
+
+    const filePath = req.file.path;
+
+    const eventName = req.body.eventName;
+    const eventDate = req.body.eventDate;
+    const certificateLevel = req.body.certificateLevel;
+
+    const userDetails = new UserAcadamics({
+      eventName,
+      eventDate,
+      certificateLevel,
+      certificateFile: {
+        data: fs.readFileSync(filePath),
+        contentType: req.file.mimetype
+      }
+    });
+
+    const result = await userDetails.save();
+
+    res.send('File uploaded successfully');
+
+} catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
