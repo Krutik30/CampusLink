@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Navbar from '../../Components/Navbar/Navbar'
 import UserSidebar from '../../Components/UserProfile/UserSidebar'
 import AccountSetting from '../../Components/UserProfile/AccountSetting'
 import './UserProfile.css'
@@ -15,7 +14,6 @@ function UserProfile() {
   return (
 
     <div className='userprofile'>
-     <Navbar/>    
     {/* UserProfile,{activepage} */}
     <div className="userprofilein">
         <div className="left">

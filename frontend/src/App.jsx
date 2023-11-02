@@ -8,11 +8,12 @@ import Login from './Page/Authentication/Login';
 import Forgotpassword from './Page/Authentication/Forgotpassword';
 import UserProfile from './Page/User/UserProfile';
 import CertificateUpload from './Page/UploadFile/UploadCertificate';
-import { CertificateUploadHency } from './Page/UploadFile/component/CertificateUploadHency';
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
   return (
     <div>
+      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -20,8 +21,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/forgotpassword" element={<Forgotpassword/>} />
-          <Route path="/prakrutiTest" element={<CertificateUpload />} />
-          <Route path="/hencyTest" element={<CertificateUploadHency />} />
+          <Route path="/upload" element={<CertificateUpload />} />
           <Route path='/user/:activepage' element={<UserProfile/>}/>
           <Route path="*" element={<div>
             <h1>404 NOT FOUND</h1>

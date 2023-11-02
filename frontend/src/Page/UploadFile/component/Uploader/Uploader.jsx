@@ -1,11 +1,7 @@
 import {useState} from 'react'
 import './uploader.css'
-import {MdCloudUpload, MdDelete} from 'react-icons/md'
-import {AiFillFileImage} from 'react-icons/ai'
-import * as React from 'react';  
-import Stack from '@mui/material/Stack';  
+import React from 'react';  
 import Button from '@mui/material/Button';  
-import { alignProperty } from '@mui/material/styles/cssUtils';
 function Uploader() {
 
     const [image, setImage] = useState(null)
@@ -37,11 +33,11 @@ function Uploader() {
             <AiFillFileImage color='#1475cf'/>
             <span className='upload-content'>
                 {fileName}
-                <MdDelete 
+                <button 
                 onClick={() => {
                     setaFileName("No selected File")
                     setImage(null)
-                }}/>
+                }}>delete</button>
             </span>
         </section>
         <div className='up-button'>
