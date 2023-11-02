@@ -2,7 +2,7 @@
 .certificate-upload {
   max-width: 400px;
   margin: 0 auto;
-  margin-bottom: 5vh;
+  margin-bottom: 10vh;
   margin-top: 1vh;
   padding: 20px;
   border: 1px solid #ccc;
@@ -116,3 +116,25 @@
   button:hover {
     background-color: #0056b3;
   }
+
+  
+/* Styles for Larger Screens (Tablets and Desktops) */
+@media (min-width: 768px) {
+  .certificate-upload {
+    max-width: 600px;
+  }
+}
+
+/* Styles for Extra Large Screens (Desktops) */
+@media (min-width: 992px) {
+  .certificate-upload {
+    max-width: 800px;
+  }
+}
+
+/* Styles for Very Large Screens (Large Desktops) */
+@media (min-width: 1200px) {
+  .certificate-upload {
+    max-width: 1000px;
+  }
+}

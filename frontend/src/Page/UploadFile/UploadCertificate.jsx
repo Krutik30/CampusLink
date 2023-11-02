@@ -7,13 +7,19 @@ function CertificateUpload() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-
+    const data = {};
+  
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });   
     try {
       const response = await fetch('http://localhost:3000/uploadCertificate', {
         method: 'POST',
-        body: formData
-      });
-
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(value => console.log(value));
       if (response.ok) {
         console.log('Certificate uploaded successfully!');
       } else {
@@ -24,11 +30,17 @@ function CertificateUpload() {
     }
   };
 
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <div className="certificate-upload">
       <Box />
       <h1 id="uc">Upload Certificate</h1>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="eventEmail" defaultValue={user.email} />
+        </div>
         <div>
           <label htmlFor="certName">Certification Event Name:</label>
           <input type="text" id="certName" name="eventName" />

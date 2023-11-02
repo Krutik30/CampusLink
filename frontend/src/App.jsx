@@ -9,6 +9,7 @@ import Forgotpassword from './Page/Authentication/Forgotpassword';
 import UserProfile from './Page/User/UserProfile';
 import CertificateUpload from './Page/UploadFile/UploadCertificate';
 import Navbar from './Components/Navbar/Navbar';
+import CertificateDetails from './Page/Certificate/CertificateDetails';
 
 function App() {
   return (
@@ -18,16 +19,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<SignUp/>} />
-          <Route path="/forgotpassword" element={<Forgotpassword/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgotpassword" element={<Forgotpassword />} />
           <Route path="/upload" element={<CertificateUpload />} />
-          <Route path='/user/:activepage' element={<UserProfile/>}/>
+          <Route path='/user/:activepage' element={<UserProfile />} />
+          <Route path="/certificates" element={<CertificateDetails />} />
           <Route path="*" element={<div>
             <h1>404 NOT FOUND</h1>
           </div>} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </div>
   )
 }

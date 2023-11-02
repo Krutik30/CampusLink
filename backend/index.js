@@ -1,15 +1,16 @@
 import express, { json } from 'express';
-// import config from './db/config.js'
 import User from './db/Users.js';
 import cors from 'cors'
 import mongoose from 'mongoose'
 import UserAcadamics from './db/UserAcadamics.js'
 import multer from 'multer'
+import Certificate from './db/certificateSchema.js';
 
 const port = 3000
 const app = express()
 app.use(cors())
 app.use(json())
+const upload = multer({ dest: 'uploads/', limits: { fileSize: 1024 * 1024 * 5 } });
 
 mongoose.connect('mongodb+srv://agherakrutik99:Krutik30@cluster0.raa0ml1.mongodb.net/campusLink')
 
@@ -90,37 +91,45 @@ app.put("/userAcadamics", async (req, res) => {
     }
 });
 
-const upload = multer({ dest: 'uploads/' });
-
 app.post('/uploadCertificate', upload.single('certificateFile'), async (req, res) => {
   try {
-
-    const filePath = req.file.path;
-
-    const eventName = req.body.eventName;
-    const eventDate = req.body.eventDate;
-    const certificateLevel = req.body.certificateLevel;
-
-    const userDetails = new UserAcadamics({
-      eventName,
-      eventDate,
-      certificateLevel,
+    console.log(req.body)
+    const certificate = new Certificate({
+      email: req.body.email,
+      eventName: req.body.eventName,
+      eventDate: req.body.eventDate,
+      eventPlace: req.body.eventPlace,
+      eventType: req.body.eventType,
+      mainActivity: req.body.mainActivity,
       certificateFile: {
-        data: fs.readFileSync(filePath),
+        data: req.file.buffer,
         contentType: req.file.mimetype
       }
     });
 
-    const result = await userDetails.save();
-
-    res.send('File uploaded successfully');
-
-} catch (error) {
-    console.error(error);
+    const savedCertificate = await certificate.save();
+    console.log(savedCertificate)
+    res.send('Certificate uploaded successfully');
+  } catch (error) {
+    console.error(error)
     res.status(500).send('Internal Server Error');
   }
-});
+})
 
+app.get('/certificates/:email', async (req, res) => {
+    try {
+      const certificate = await Certificate.findOne({ email: req.params.email });
+      console.log(certificate)
+      if (!certificate) {
+        return res.status(404).send('Certificate not found');
+      }
+
+      res.send(certificate);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.listen(port, () => {
     console.log('yess i am listening to', port);
