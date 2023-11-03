@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.timetable-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+.break {
+    background-color: #FFCCCB; /* Light red for break */
+}
+
+.lunch {
+    background-color: #ADD8E6; /* Light blue for lunch */
+}
+
+.break, .lunch {
+    font-weight: bold;
+}
+
+th.break, th.lunch {
+    background-color: #ccc;
+}

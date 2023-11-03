@@ -1,53 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './CertificateDetails.css'; // Create a CSS file for styling
 
 function CertificateDetails() {
-  const [certificate, setCertificate] = useState(null);
-  const [emailId, setEmailId] = useState(''); // Input field to enter certificate ID
+  const [certificates, setCertificates] = useState([]);
 
-  const handleInputChange = (e) => {
-    setEmailId(e.target.value);
-  };
+  const userObj = JSON.parse(localStorage.getItem('user'))
 
-  const handleGetCertificate = async () => {
+  const fetchCertificates = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/certificates/${emailId}`);
+      const response = await fetch(`http://localhost:3000/certificates/${userObj.email}`);
       if (response.ok) {
         const data = await response.json();
-        setCertificate(data);
+        setCertificates(data);
       } else {
-        console.error('Error fetching certificate');
+        console.error('Error fetching certificates');
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(()=>{
+    fetchCertificates()
+  },[])
+
+  const image = [
+    '/image1.jpg',
+    '/image2.jpeg',
+    '/image3.png',
+    '/image4.jpeg',
+  ]
+
   return (
     <div>
       <h2>Get Certificate Details</h2>
-      <div>
-        <label htmlFor="certificateId">Email ID:</label>
-        <input
-          type="text"
-          id="certificateId"
-          value={emailId}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleGetCertificate}>Get Certificate</button>
+      <div className="certificate-grid">
+        {certificates.map((certificate, index) => (
+          <div className="certificate-card" key={index}>
+            <img
+              src={`../src/page/Certificate/certificate.photo/${image[index]}`}
+              alt="Certificate"
+            />
+            <h3>{certificate.eventName}</h3>
+            <p>Event Date: {certificate.eventDate}</p>
+            <p>Event Place: {certificate.eventPlace}</p>
+            <p>Event Type: {certificate.eventType}</p>
+            <p>Main Activity: {certificate.mainActivity}</p>
+          </div>
+        ))}
       </div>
-      {certificate && (
-        <div>
-          <h3>Certificate Details</h3>
-          <p>Event Name: {certificate.eventName}</p>
-          <p>Event Date: {certificate.eventDate}</p>
-          <p>Event Place: {certificate.eventPlace}</p>
-          <p>Event Type: {certificate.eventType}</p>
-          <p>Main Activity: {certificate.mainActivity}</p>
-          <a href={`data:${certificate.certificateFile.contentType};base64,${certificate.certificateFile.data.toString('base64')}`} download="certificate.pdf">
-            Download Certificate
-          </a>
-        </div>
-      )}
     </div>
   );
 }
