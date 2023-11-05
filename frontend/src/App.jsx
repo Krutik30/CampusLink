@@ -13,7 +13,7 @@ import CertificateDetails from './Page/Certificate/CertificateDetails';
 import Edit from './Page/Edit/Edit'
 require('dotenv').config();
 
-export const BACKEND_URL = process.env.BACKEND_URL
+export const BACKEND_URL = process.env.BACKEND_URL;
 
 function App() {
   return (
@@ -30,13 +30,13 @@ function App() {
           <Route path='/user/:activepage' element={<UserProfile />} />
           <Route path="/certificates" element={<CertificateDetails />} />
           <Route path="/Edit" element={<Edit />} />
-          <Route 
-            path="*" 
+          <Route
+            path="*"
             element={
               <div>
                 <h1>404 NOT FOUND</h1>
               </div>
-            } 
+            }
           />
         </Routes>
       </BrowserRouter>

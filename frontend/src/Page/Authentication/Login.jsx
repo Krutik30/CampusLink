@@ -17,7 +17,7 @@ function Login() {
 
   const handleLogin = async () => {
 
-    let result = await fetch(`${process.env.BACKEND_URL}/login`, {
+    let result = await fetch(`${BACKEND_URL}/login`, {
       method: 'post',
       body: JSON.stringify({ password, email }),
       headers: {

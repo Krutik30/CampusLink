@@ -8,7 +8,7 @@ function CertificateDetails() {
 
   const fetchCertificates = async () => {
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/certificates/${userObj.email}`);
+      const response = await fetch(`${BACKEND_URL}/certificates/${userObj.email}`);
       if (response.ok) {
         const data = await response.json();
         setCertificates(data);

@@ -12,7 +12,7 @@ function SignUp() {
 
   const collectData = async () => {
     console.warn(name, email, password)
-    let result = await fetch(`${process.env.BACKEND_URL}/register`, {
+    let result = await fetch(`${BACKEND_URL}/register`, {
       method: 'post',
       body: JSON.stringify({ name, email, password }),
       headers: {

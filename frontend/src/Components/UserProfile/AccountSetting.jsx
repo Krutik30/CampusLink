@@ -1,7 +1,7 @@
 import React from 'react';
 import './AccountSetting.css';
 
-const userDetailsResponse = fetch(`${process.env.BACKEND_URL}/getUserAcadamics`, {
+const userDetailsResponse = fetch(`${BACKEND_URL}/getUserAcadamics`, {
   method: 'post',
   body: JSON.stringify({
     email: JSON.parse(localStorage.getItem('user')).email
@@ -25,7 +25,7 @@ function AccountSetting() {
       data[key] = value;
     });
 
-    let result = await fetch(`${process.env.BACKEND_URL}/userAcadamics`, {
+    let result = await fetch(`${BACKEND_URL}/userAcadamics`, {
       method: 'put',
       body: JSON.stringify(data),
       headers: {
