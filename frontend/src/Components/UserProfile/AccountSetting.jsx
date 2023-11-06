@@ -11,7 +11,7 @@ const userDetailsResponse = fetch('http://localhost:3000/getUserAcadamics', {
   }
 });
 
-const userDetails = await userDetailsResponse.json();
+const userDetails = userDetailsResponse.json();
 
 function AccountSetting() {
 
