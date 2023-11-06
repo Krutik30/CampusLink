@@ -73,7 +73,7 @@ app.post("/getUserAcadamics", async (req, res) => {
         if (userDetails) {
             res.send(userDetails);
         } else {
-            res.status(404).send('User not found');
+            res.send({});
         }
     } catch (error) {
         console.error(error);

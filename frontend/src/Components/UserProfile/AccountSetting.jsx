@@ -1,7 +1,7 @@
 import React from 'react';
 import './AccountSetting.css';
 
-const userDetailsResponse = await fetch('http://localhost:3000/getUserAcadamics', {
+const userDetailsResponse = fetch('http://localhost:3000/getUserAcadamics', {
   method: 'post',
   body: JSON.stringify({
     email: JSON.parse(localStorage.getItem('user')).email
