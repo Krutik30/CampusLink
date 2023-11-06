@@ -8,12 +8,12 @@ function Login() {
   const [password, setPassword] = useState('')
   const Navigate = useNavigate()
 
-  useEffect(()=>{
-    const auth = localStorage.getItem('user')
-    if(auth){
-      Navigate('/')
-    }
-  })
+  // useEffect(()=>{
+  //   const auth = localStorage.removeItem('user')
+  //   if(auth){
+  //     Navigate('/')
+  //   }
+  // },[])
 
   const handleLogin = async () => {
   

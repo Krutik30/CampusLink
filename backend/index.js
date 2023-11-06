@@ -1,17 +1,27 @@
-import express, { json } from 'express';
+import express, { json } from 'express'
 import User from './db/Users.js';
 import cors from 'cors'
 import mongoose from 'mongoose'
 import UserAcadamics from './db/UserAcadamics.js'
 import multer from 'multer'
 import Certificate from './db/certificateSchema.js';
+import fs from 'fs'
 
 const port = 3000
 const app = express()
 app.use(cors())
 app.use(json())
-const upload = multer({ dest: 'uploads/', limits: { fileSize: 1024 * 1024 * 5 } });
+const storage = multer.diskStorage({
+destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Specify the destination folder
+},
+filename: function (req, file, cb) {
+    cb(null, file.originalname); // Keep the original file name
+}
+});
 
+const upload = multer({ storage: storage });
+  
 mongoose.connect('mongodb+srv://agherakrutik99:Krutik30@cluster0.raa0ml1.mongodb.net/campusLink')
 
 const connection = mongoose.connection;
@@ -63,7 +73,7 @@ app.post("/getUserAcadamics", async (req, res) => {
         if (userDetails) {
             res.send(userDetails);
         } else {
-            res.status(404).send('User not found');
+            res.send({});
         }
     } catch (error) {
         console.error(error);
@@ -94,6 +104,8 @@ app.put("/userAcadamics", async (req, res) => {
 app.post('/uploadCertificate', upload.single('certificateFile'), async (req, res) => {
   try {
     console.log(req.body)
+    console.log(req.file); // Check if req.file is defined
+    console.log(req.file.path); // Check if req.file.path is defined
     const certificate = new Certificate({
       email: req.body.email,
       eventName: req.body.eventName,
@@ -102,7 +114,7 @@ app.post('/uploadCertificate', upload.single('certificateFile'), async (req, res
       eventType: req.body.eventType,
       mainActivity: req.body.mainActivity,
       certificateFile: {
-        data: req.file.buffer,
+        data: fs.readFileSync(req.path),
         contentType: req.file.mimetype
       }
     });
@@ -118,19 +130,18 @@ app.post('/uploadCertificate', upload.single('certificateFile'), async (req, res
 
 app.get('/certificates/:email', async (req, res) => {
     try {
-      const certificate = await Certificate.findOne({ email: req.params.email });
-      console.log(certificate)
-      if (!certificate) {
-        return res.status(404).send('Certificate not found');
-      }
+        const certificates = await Certificate.find({ email: req.params.email });
+        if (!certificates || certificates.length === 0) {
+        return res.status(404).json({ error: 'Certificates not found' });
+        }
 
-      res.send(certificate);
+        res.json(certificates);
     } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-
+});
+  
 app.listen(port, () => {
     console.log('yess i am listening to', port);
 })

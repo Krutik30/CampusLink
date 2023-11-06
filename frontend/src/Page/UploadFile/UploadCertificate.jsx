@@ -7,11 +7,19 @@ function CertificateUpload() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    const fileInput = document.getElementById('certificateFile');
+    console.log(fileInput.value, fileInput.files[0].File)
+    // Append the file input to the FormData
+    formData.append('certificateFile', {
+      path: fileInput.value
+    });
+  
     const data = {};
   
     formData.forEach((value, key) => {
       data[key] = value;
     });   
+    console.log(data)
     try {
       const response = await fetch('http://localhost:3000/uploadCertificate', {
         method: 'POST',
@@ -31,12 +39,13 @@ function CertificateUpload() {
   };
 
   const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user)
 
   return (
     <div className="certificate-upload">
       <Box />
       <h1 id="uc">Upload Certificate</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} action="/uploadCertificate" method="post" enctype="multipart/form-data">
         <div>
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="eventEmail" defaultValue={user.email} />

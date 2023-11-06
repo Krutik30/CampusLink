@@ -10,6 +10,7 @@ import UserProfile from './Page/User/UserProfile';
 import CertificateUpload from './Page/UploadFile/UploadCertificate';
 import Navbar from './Components/Navbar/Navbar';
 import CertificateDetails from './Page/Certificate/CertificateDetails';
+import Edit from './Page/Edit/Edit'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/upload" element={<CertificateUpload />} />
           <Route path='/user/:activepage' element={<UserProfile />} />
           <Route path="/certificates" element={<CertificateDetails />} />
+          <Route path="/Edit" element={<Edit />} />
           <Route path="*" element={<div>
             <h1>404 NOT FOUND</h1>
           </div>} />
