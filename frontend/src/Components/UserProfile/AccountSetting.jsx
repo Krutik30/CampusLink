@@ -1,5 +1,6 @@
 import React from 'react';
 import './AccountSetting.css';
+import { BACKEND_URL } from '../../App';
 
 const userDetailsResponse = fetch(`${BACKEND_URL}/getUserAcadamics`, {
   method: 'post',

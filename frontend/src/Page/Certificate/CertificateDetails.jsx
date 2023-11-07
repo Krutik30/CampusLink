@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './CertificateDetails.css'; // Create a CSS file for styling
+import { BACKEND_URL } from '../../App';
 
 function CertificateDetails() {
   const [certificates, setCertificates] = useState([]);

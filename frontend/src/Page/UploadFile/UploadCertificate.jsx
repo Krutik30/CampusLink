@@ -1,6 +1,7 @@
 import React from 'react';
 import './CertificateUpload.css';
 import Box from './component/Box';
+import { BACKEND_URL } from '../../App';
 
 function CertificateUpload() {
   const handleSubmit = async (event) => {

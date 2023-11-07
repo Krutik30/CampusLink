@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BACKEND_URL } from '../../App';
 
 function CertificateCard({ certificate, onEdit }) {
   return (

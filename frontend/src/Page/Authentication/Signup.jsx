@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import './SignUp.css'
 import { useNavigate } from 'react-router-dom'
+import { BACKEND_URL } from '../../App'
 
 function SignUp() {
   const [name, setName] = useState("")
