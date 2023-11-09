@@ -27,9 +27,14 @@ function App() {
           <Route path='/user/:activepage' element={<UserProfile />} />
           <Route path="/certificates" element={<CertificateDetails />} />
           <Route path="/Edit" element={<Edit />} />
-          <Route path="*" element={<div>
-            <h1>404 NOT FOUND</h1>
-          </div>} />
+          <Route 
+            path="*" 
+            element={
+              <div>
+                <h1>404 NOT FOUND</h1>
+              </div>
+            } 
+          />
         </Routes>
       </BrowserRouter>
     </div>
