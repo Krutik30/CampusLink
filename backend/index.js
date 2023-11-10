@@ -132,7 +132,7 @@ app.get('/certificates/:email', async (req, res) => {
     try {
         const certificates = await Certificate.find({ email: req.params.email });
         if (!certificates || certificates.length === 0) {
-        return res.status(404).json({ error: 'Certificates not found' });
+            return res.status(404).json({ error: 'Certificates not found' });
         }
 
         res.json(certificates);
