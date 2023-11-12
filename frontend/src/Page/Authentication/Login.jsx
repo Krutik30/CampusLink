@@ -43,7 +43,7 @@ function Login() {
         <h1>Login Page</h1>
         <input type='text' className='inputbox' name='email' id='email' placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} value={email} />
         <input type='password' className='inputbox' name='password' id='password' placeholder='Enter Your Password' onChange={(e) => setPassword(e.target.value)} value={password} />
-
+        <a href='/forgotpassword'>Forgot Password?</a>
         <button className='button1' onClick={handleLogin} type='button'>Login</button>
       </div>
     </div>
