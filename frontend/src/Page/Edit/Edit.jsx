@@ -25,7 +25,7 @@ function EditableCertificateDetails() {
 
   const handleGetCertificate = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/certificates/${emailId}`);
+      const response = await fetch(`${process.env.BACKEND_URL}/certificates/${emailId}`);
       if (response.ok) {
         const data = await response.json();
         setCertificates(data);

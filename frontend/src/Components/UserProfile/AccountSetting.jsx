@@ -1,7 +1,7 @@
 import React from 'react';
 import './AccountSetting.css';
 
-const userDetailsResponse = fetch(`${BACKEND_URL}/getUserAcadamics`, {
+const userDetailsResponse = fetch(`${process.env.BACKEND_URL}/getUserAcadamics`, {
   method: 'post',
   body: JSON.stringify({
     email: JSON.parse(localStorage.getItem('user')).email
@@ -25,7 +25,7 @@ function AccountSetting() {
       data[key] = value;
     });
 
-    let result = await fetch(`${BACKEND_URL}/userAcadamics`, {
+    let result = await fetch(`${process.env.BACKEND_URL}/userAcadamics`, {
       method: 'put',
       body: JSON.stringify(data),
       headers: {
@@ -46,7 +46,7 @@ function AccountSetting() {
         <div className="form">
           <div className="form-group">
             <label htmlFor='name'>Your Name </label>
-            <input type='text' id='name' name='name' defaultValue={userDetails.name}></input>
+            <input type='text' id='name' name='name' defaultValue={userDetails?.name}></input>
           </div>
 
           <div className="form-group">
@@ -56,27 +56,27 @@ function AccountSetting() {
 
           <div className="form-group">
             <label htmlFor='email'>Email </label>
-            <input type='email' id='email' name='email' defaultValue={userDetails.email}></input>
+            <input type='email' id='email' name='email' defaultValue={userDetails?.email}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='mobile'>Mobile No</label>
-            <input type='text' id='mobile' name='mobile' defaultValue={userDetails.mobile}></input>
+            <input type='text' id='mobile' name='mobile' defaultValue={userDetails?.mobile}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='department'>Department</label>
-            <input type='text' id='department' name='department' defaultValue={userDetails.department}></input>
+            <input type='text' id='department' name='department' defaultValue={userDetails?.department}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='batch'>Batch</label>
-            <input type='text' id='batch' name='batch' defaultValue={userDetails.batch}></input>
+            <input type='text' id='batch' name='batch' defaultValue={userDetails?.batch}></input>
           </div>
 
           <div className="form-group">
             <label htmlFor='year'>Passout year</label>
-            <input type='text' id='year' name='year' defaultValue={userDetails.year}></input>
+            <input type='text' id='year' name='year' defaultValue={userDetails?.year}></input>
           </div>
         </div>
         <button type='submit' className='button'>Save Changes</button>

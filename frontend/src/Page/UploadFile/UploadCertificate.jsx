@@ -21,7 +21,7 @@ function CertificateUpload() {
     });
     console.log(data)
     try {
-      const response = await fetch(`${BACKEND_URL}/uploadCertificate`, {
+      const response = await fetch(`${process.env.BACKEND_URL}/uploadCertificate`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
