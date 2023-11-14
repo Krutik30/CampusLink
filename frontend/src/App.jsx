@@ -11,6 +11,9 @@ import CertificateUpload from './Page/UploadFile/UploadCertificate';
 import Navbar from './Components/Navbar/Navbar';
 import CertificateDetails from './Page/Certificate/CertificateDetails';
 import Edit from './Page/Edit/Edit'
+require('dotenv').config();
+
+export const BACKEND_URL = process.env.BACKEND_URL
 
 function App() {
   return (
