@@ -8,7 +8,7 @@ function CertificateDetails() {
 
   const fetchCertificates = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/certificates/${userObj.email}`);
+      const response = await fetch(`${BACKEND_URL}/certificates/${userObj.email}`);
       if (response.ok) {
         const data = await response.json();
         setCertificates(data);
@@ -20,9 +20,9 @@ function CertificateDetails() {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchCertificates()
-  },[])
+  }, [])
 
   const image = [
     '/image1.jpg',

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 function CertificateCard({ certificate, onEdit }) {
-    return (
-        <div className="certificate-card">
-            <h3>{certificate.eventName}</h3>
-            <p>Event Date: {certificate.eventDate}</p>
-            <p>Event Place: {certificate.eventPlace}</p>
-            <p>Event Type: {certificate.eventType}</p>
-            <p>Main Activity: {certificate.mainActivity}</p>
-            <button onClick={() => onEdit(certificate)}>Click to Edit</button>
-        </div>
-    );
+  return (
+    <div className="certificate-card">
+      <h3>{certificate.eventName}</h3>
+      <p>Event Date: {certificate.eventDate}</p>
+      <p>Event Place: {certificate.eventPlace}</p>
+      <p>Event Type: {certificate.eventType}</p>
+      <p>Main Activity: {certificate.mainActivity}</p>
+      <button onClick={() => onEdit(certificate)}>Click to Edit</button>
+    </div>
+  );
 }
 
 function EditableCertificateDetails() {
@@ -25,7 +25,7 @@ function EditableCertificateDetails() {
 
   const handleGetCertificate = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/certificates/${emailId}`);
+      const response = await fetch(`${BACKEND_URL}/certificates/${emailId}`);
       if (response.ok) {
         const data = await response.json();
         setCertificates(data);
@@ -66,10 +66,10 @@ function EditableCertificateDetails() {
       </div>
       <div className='certificate-grid'>
         {
-            certificates && certificates.map((certificate)=><CertificateCard certificate={certificate} onClick={(certificate)=>{
-                setCertificate(certificate)
-                setCertificates(null);
-            }}/>)
+          certificates && certificates.map((certificate) => <CertificateCard certificate={certificate} onClick={(certificate) => {
+            setCertificate(certificate)
+            setCertificates(null);
+          }} />)
         }
       </div>
       {certificate && (
@@ -78,7 +78,7 @@ function EditableCertificateDetails() {
             <div>
               <h3>Edit Certificate Details</h3>
               <div>
-                Event Name: 
+                Event Name:
                 <input
                   type="text"
                   value={certificate.eventName}
@@ -86,7 +86,7 @@ function EditableCertificateDetails() {
                 />
               </div>
               <div>
-                Event Date: 
+                Event Date:
                 <input
                   type="date"
                   value={certificate.eventDate}
@@ -94,7 +94,7 @@ function EditableCertificateDetails() {
                 />
               </div>
               <div>
-                Event Place: 
+                Event Place:
                 <input
                   type="text"
                   value={certificate.eventPlace}
@@ -102,7 +102,7 @@ function EditableCertificateDetails() {
                 />
               </div>
               <div>
-                Event Type: 
+                Event Type:
                 <input
                   type="text"
                   value={certificate.eventType}
@@ -110,7 +110,7 @@ function EditableCertificateDetails() {
                 />
               </div>
               <div>
-                Main Activity: 
+                Main Activity:
                 <input
                   type="text"
                   value={certificate.mainActivity}

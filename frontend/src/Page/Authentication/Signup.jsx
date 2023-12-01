@@ -9,10 +9,10 @@ function SignUp() {
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate()
-  
+
   const collectData = async () => {
     console.warn(name, email, password)
-    let result = await fetch('http://localhost:3000/register', {
+    let result = await fetch(`${BACKEND_URL}/register`, {
       method: 'post',
       body: JSON.stringify({ name, email, password }),
       headers: {

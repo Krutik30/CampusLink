@@ -1,7 +1,7 @@
 import React from 'react';
 import './AccountSetting.css';
 
-const userDetailsResponse = fetch('http://localhost:3000/getUserAcadamics', {
+const userDetailsResponse = fetch(`${BACKEND_URL}/getUserAcadamics`, {
   method: 'post',
   body: JSON.stringify({
     email: JSON.parse(localStorage.getItem('user')).email
@@ -17,26 +17,26 @@ function AccountSetting() {
 
   async function submitForm(event) {
     event.preventDefault();
-  
+
     const formData = new FormData(event.target);
     const data = {};
-  
+
     formData.forEach((value, key) => {
       data[key] = value;
     });
-  
-    let result = await fetch('http://localhost:3000/userAcadamics', {
+
+    let result = await fetch(`${BACKEND_URL}/userAcadamics`, {
       method: 'put',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(value => console.log(value))
-    .catch(err => console.log(err))
+      .then(response => response.json())
+      .then(value => console.log(value))
+      .catch(err => console.log(err))
   }
-  
+
 
   return (
     <div className='accountsetting'>

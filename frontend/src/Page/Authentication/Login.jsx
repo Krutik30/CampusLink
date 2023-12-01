@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
@@ -16,8 +16,8 @@ function Login() {
   // },[])
 
   const handleLogin = async () => {
-  
-    let result = await fetch('http://localhost:3000/login', {
+
+    let result = await fetch(`${BACKEND_URL}/login`, {
       method: 'post',
       body: JSON.stringify({ password, email }),
       headers: {
@@ -26,14 +26,14 @@ function Login() {
     })
     result = await result.json()
     console.log(result)
-    if(result.email){
-      localStorage.setItem("user",JSON.stringify(result))
+    if (result.email) {
+      localStorage.setItem("user", JSON.stringify(result))
       Navigate('/')
     }
-    else{
+    else {
       alert('User not found')
     }
-   
+
 
 
   }

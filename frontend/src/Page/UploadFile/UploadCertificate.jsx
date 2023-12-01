@@ -13,15 +13,15 @@ function CertificateUpload() {
     formData.append('certificateFile', {
       path: fileInput.value
     });
-  
+
     const data = {};
-  
+
     formData.forEach((value, key) => {
       data[key] = value;
-    });   
+    });
     console.log(data)
     try {
-      const response = await fetch('http://localhost:3000/uploadCertificate', {
+      const response = await fetch(`${BACKEND_URL}/uploadCertificate`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
