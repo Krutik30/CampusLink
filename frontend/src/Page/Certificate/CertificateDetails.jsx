@@ -41,7 +41,7 @@ function CertificateDetails() {
           {certificates.map((certificate, index) => (
             <div className="certificate-card" key={index}>
               <img
-                src={`../src/page/Certificate/certificate.photo/${image[index]}`}
+                src={`../certificate.photo/${image[index]}`}
                 alt="Certificate"
               />
               <h3>{certificate.eventName}</h3>

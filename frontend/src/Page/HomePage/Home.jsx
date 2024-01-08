@@ -1,8 +1,7 @@
-import React from 'react'
-import './Home.css'
-import SuspenseAndErrorBoundary from '../../SuspendError'
-import ApexCharts from 'apexcharts'
-
+import React, { useEffect, useRef } from 'react';
+import './Home.css';
+import SuspenseAndErrorBoundary from '../../SuspendError';
+import ApexCharts from 'apexcharts';
 
 const options = {
   series: [{
@@ -74,30 +73,36 @@ const optionsPie = {
   }]
 };
 
-var chart = new ApexCharts(document.querySelector("#chartPie"), optionsPie);
-chart.render();
+const Home = () => {
+  const chartPieRef = useRef(null);
+  const chartNewRef = useRef(null);
 
-var chart = new ApexCharts(document.querySelector("#chartNew"), options);
-chart.render();
+  useEffect(() => {
+    const chart1 = new ApexCharts(chartPieRef.current, optionsPie);
+    chart1.render();
 
+    const chart2 = new ApexCharts(chartNewRef.current, options);
+    chart2.render();
 
+    return () => {
+      chart1.destroy();
+      chart2.destroy();
+    };
+  }, []);
 
-function Home() {
   return (
     <SuspenseAndErrorBoundary>
       <h1>Home</h1>
       <div className="home-page">
         <div className="chart">
-          {/* <img src="https://online.hbs.edu/PublishingImages/Pie%20Chart%20Example.png" alt="Pie Chart" /> */}
-          <div id='chartNew'></div>
+          <div ref={chartPieRef}></div>
           <div className="description">
             <h2>Pie Chart Example</h2>
             <p>Description for the pie chart goes here.</p>
           </div>
         </div>
         <div className="chart">
-          {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwmlY9UukZUiB8YA2YZW1NcQnsE-ZImSl_EL6sS8cHfdgVxU5zcjfkh2Z8_9K3UeUFp8Q&usqp=CAU" alt="Bar Chart" /> */}
-          <div id='chartPie'></div>
+          <div ref={chartNewRef}></div>
           <div className="description">
             <h2>Bar Chart Example</h2>
             <p>Description for the bar chart goes here.</p>
@@ -105,7 +110,7 @@ function Home() {
         </div>
       </div>
     </SuspenseAndErrorBoundary>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
