@@ -11,9 +11,9 @@ import CertificateUpload from './Page/UploadFile/UploadCertificate';
 import Navbar from './Components/Navbar/Navbar';
 import CertificateDetails from './Page/Certificate/CertificateDetails';
 import Edit from './Page/Edit/Edit'
-require('dotenv').config();
+import SuspenseAndErrorBoundary from './SuspendError';
 
-export const BACKEND_URL = process.env.BACKEND_URL;
+export const BACKEND_URL = 'http://localhost:3000';
 
 function App() {
   return (

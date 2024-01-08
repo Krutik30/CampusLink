@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './SignUp.css'
 import { useNavigate } from 'react-router-dom'
 import { BACKEND_URL } from '../../App'
+import SuspenseAndErrorBoundary from '../../SuspendError'
 
 function SignUp() {
   const [name, setName] = useState("")
@@ -28,28 +29,29 @@ function SignUp() {
   }
 
   return (
-    <div className='signup'>
-      <h1 className='heading'>Register</h1>
+    <SuspenseAndErrorBoundary>
+      <div className='signup'>
+        <h1 className='heading'>Register</h1>
 
-      <div className="form">
-        <div className="form-group">
-          <label htmlFor='name'>Name</label>
-          <input type="text" className='inputbox' value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter Your Name' />
-        </div>
+        <div className="form">
+          <div className="form-group">
+            <label htmlFor='name'>Name</label>
+            <input type="text" className='inputbox' value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter Your Name' />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor='email'>Email</label>
-          <input type="text" className='inputbox' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email' />
-        </div>
+          <div className="form-group">
+            <label htmlFor='email'>Email</label>
+            <input type="text" className='inputbox' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Your Email' />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor='password'>Password</label>
-          <input type="text" className='inputbox' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
+          <div className="form-group">
+            <label htmlFor='password'>Password</label>
+            <input type="text" className='inputbox' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
+          </div>
         </div>
+        <button className='button' onClick={collectData} type='button'>Sign Up</button>
       </div>
-      <button className='button' onClick={collectData} type='button'>Sign Up</button>
-    </div>
-
+    </SuspenseAndErrorBoundary>
   )
 }
 

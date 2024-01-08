@@ -5,6 +5,7 @@ import AccountSetting from '../../Components/UserProfile/AccountSetting'
 import './UserProfile.css'
 import ChangePassword from '../../Components/UserProfile/ChangePassword'
 import TimeTable from '../../Components/UserProfile/TimeTable'
+import SuspenseAndErrorBoundary from '../../SuspendError'
 
 function UserProfile() {
     const {activepage} = useParams()
@@ -12,20 +13,21 @@ function UserProfile() {
 
 
   return (
-
-    <div className='userprofile'>
-    {/* UserProfile,{activepage} */}
-    <div className="userprofilein">
-        <div className="left">
-            <UserSidebar activepage={activepage}/>
+    <SuspenseAndErrorBoundary>
+      <div className='userprofile'>
+        {/* UserProfile,{activepage} */}
+        <div className="userprofilein">
+          <div className="left">
+            <UserSidebar activepage={activepage} />
+          </div>
+          <div className="right">
+            {activepage === 'accountsettings' && <AccountSetting />}
+            {activepage === 'changepassword' && <ChangePassword />}
+            {activepage === 'yourtimetable' && <TimeTable />}
+          </div>
         </div>
-        <div className="right">
-            {activepage === 'accountsettings' && <AccountSetting/>}
-            {activepage === 'changepassword' && <ChangePassword/>}
-            {activepage === 'yourtimetable' && <TimeTable/>}
-        </div>
-    </div>
-    </div>
+      </div>
+    </SuspenseAndErrorBoundary>
   )
 }
 

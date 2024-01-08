@@ -1,8 +1,11 @@
 import React from 'react'
+import SuspenseAndErrorBoundary from '../../SuspendError'
 
 function Forgotpassword() {
   return (
-    <div>Forgotpassword</div>
+    <SuspenseAndErrorBoundary>
+      <div>Forgotpassword</div>
+    </SuspenseAndErrorBoundary>
   )
 }
 

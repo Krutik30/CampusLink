@@ -34,7 +34,7 @@ function TimeTable() {
               </tr>
               <tr>
                   <td>10:00 - 11:00</td>
-                  <td colspan="5">Break</td>
+                  <td colSpan="5">Break</td>
               </tr>
               <tr>
                   <td>11:00 - 12:00</td>
@@ -54,7 +54,7 @@ function TimeTable() {
               </tr>
               <tr>
                   <td>1:00 - 2:00</td>
-                  <td colspan="5">Lunch</td>
+                  <td colSpan="5">Lunch</td>
               </tr>
               <tr>
                   <td>2:00 - 3:00</td>

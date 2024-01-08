@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { BACKEND_URL } from '../../App'
+import SuspenseAndErrorBoundary from '../../SuspendError'
 
 function Login() {
 
@@ -39,7 +40,7 @@ function Login() {
 
   }
   return (
-    <div>
+    <SuspenseAndErrorBoundary>
       <div className="login">
         <h1>Login Page</h1>
         <input type='text' className='inputbox' name='email' id='email' placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} value={email} />
@@ -47,7 +48,7 @@ function Login() {
         <a href='/forgotpassword'>Forgot Password?</a>
         <button className='button1' onClick={handleLogin} type='button'>Login</button>
       </div>
-    </div>
+    </SuspenseAndErrorBoundary>
   )
 }
 

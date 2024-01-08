@@ -1,18 +1,30 @@
 import React from 'react';
 import './AccountSetting.css';
-import { BACKEND_URL } from '../../App';
 
-const userDetailsResponse = fetch(`${BACKEND_URL}/getUserAcadamics`, {
+export const BACKEND_URL = 'http://localhost:3000';
+
+const userDetailsResponse = async () => await fetch(`${BACKEND_URL}/getUserAcadamics`, {
   method: 'post',
   body: JSON.stringify({
-    email: JSON.parse(localStorage.getItem('user')).email
+    email: JSON.parse(localStorage.getItem('user'))?.email
   }),
   headers: {
     'Content-type': 'application/json'
   }
-});
+}).then(res => res);
+let userDetails = userDetailsResponse();
 
-const userDetails = userDetailsResponse.json();
+if(typeof userDetails != 'object'){
+  userDetails = {
+    name: 'Krutik',
+    email: 'agherakrutik99@gmail.com',
+    [enrollment-no]: '210170107017',
+    mobile: '7990451310',
+    department: 'Computer Engineering',
+    batch: 'G1',
+    year: '2025'
+  }
+} 
 
 function AccountSetting() {
 
@@ -37,8 +49,7 @@ function AccountSetting() {
       .then(value => console.log(value))
       .catch(err => console.log(err))
   }
-
-
+  console.log(userDetails)
   return (
     <div className='accountsetting'>
       <h1 className='heading'>Personal Information</h1>

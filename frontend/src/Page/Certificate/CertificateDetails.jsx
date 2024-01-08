@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CertificateDetails.css'; // Create a CSS file for styling
 import { BACKEND_URL } from '../../App';
+import SuspenseAndErrorBoundary from '../../SuspendError';
 
 function CertificateDetails() {
   const [certificates, setCertificates] = useState([]);
@@ -33,24 +34,26 @@ function CertificateDetails() {
   ]
 
   return (
-    <div>
-      <h2>Get Certificate Details</h2>
-      <div className="certificate-grid">
-        {certificates.map((certificate, index) => (
-          <div className="certificate-card" key={index}>
-            <img
-              src={`../src/page/Certificate/certificate.photo/${image[index]}`}
-              alt="Certificate"
-            />
-            <h3>{certificate.eventName}</h3>
-            <p>Event Date: {certificate.eventDate}</p>
-            <p>Event Place: {certificate.eventPlace}</p>
-            <p>Event Type: {certificate.eventType}</p>
-            <p>Main Activity: {certificate.mainActivity}</p>
-          </div>
-        ))}
+    <SuspenseAndErrorBoundary>
+      <div>
+        <h2>Get Certificate Details</h2>
+        <div className="certificate-grid">
+          {certificates.map((certificate, index) => (
+            <div className="certificate-card" key={index}>
+              <img
+                src={`../src/page/Certificate/certificate.photo/${image[index]}`}
+                alt="Certificate"
+              />
+              <h3>{certificate.eventName}</h3>
+              <p>Event Date: {certificate.eventDate}</p>
+              <p>Event Place: {certificate.eventPlace}</p>
+              <p>Event Type: {certificate.eventType}</p>
+              <p>Main Activity: {certificate.mainActivity}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </SuspenseAndErrorBoundary>
   );
 }
 
