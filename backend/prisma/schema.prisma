@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define Student entity
+model Student {
+  student_id        Int                @id @default(autoincrement())
+  name              String
+  email             String
+  batch             Int
+  department        String
+  contact_number    String
+  enrollments       Enrollment[]       @relation("StudentEnrollments")
+  performances      Performance[]      @relation("StudentPerformances")
+  submissions       Submission[]       @relation("StudentSubmissions")
+  communicationLogs CommunicationLog[] @relation("StudentCommunicationLogs")
+  participations    Participation[]    @relation("StudentParticipations")
+}
+
+// Define Faculty entity
+model Faculty {
+  faculty_id        Int                @id @default(autoincrement())
+  name              String
+  email             String
+  department        String
+  position          String
+  contact_number    String
+  courses           Course[]           @relation("FacultyCourses")
+  assignments       Assignment[]       @relation("FacultyAssignments")
+  communicationLogs CommunicationLog[] @relation("FacultyCommunicationLogs")
+  registrations     Registration[]     @relation("FacultyRegistrations")
+}
+
+// Define EventManager entity
+model EventManager {
+  manager_id        Int                @id @default(autoincrement())
+  name              String
+  email             String
+  contact_number    String
+  events            Event[]            @relation("EventManagerEvents")
+  communicationLogs CommunicationLog[] @relation("EventManagerCommunicationLogs")
+  participations    Participation[]    @relation("EventManagerParticipations")
+}
+
+// Define Course entity
+model Course {
+  course_id   Int           @id @default(autoincrement())
+  name        String
+  code        String
+  credits     Int
+  department  String
+  faculty     Faculty       @relation("FacultyCourses", fields: [faculty_id], references: [faculty_id])
+  faculty_id  Int
+  enrollments Enrollment[]  @relation("CourseEnrollments")
+  performances Performance[] @relation("CoursePerformances")
+  assignments  Assignment[]  @relation("CourseAssignments")
+}
+
+// Define Enrollment entity
+model Enrollment {
+  enrollment_id Int     @id @default(autoincrement())
+  semester      String
+  status        String
+  student       Student @relation("StudentEnrollments", fields: [student_id], references: [student_id])
+  student_id    Int
+  course        Course  @relation("CourseEnrollments", fields: [course_id], references: [course_id])
+  course_id     Int
+}
+
+// Define Performance entity
+model Performance {
+  performance_id Int     @id @default(autoincrement())
+  grade          String
+  semester       String
+  attendance     String
+  student        Student @relation("StudentPerformances", fields: [student_id], references: [student_id])
+  student_id     Int
+  course         Course  @relation("CoursePerformances", fields: [course_id], references: [course_id])
+  course_id      Int
+}
+
+// Define Submission entity
+model Submission {
+  submission_id   Int        @id @default(autoincrement())
+  submission_date DateTime
+  grade           String
+  feedback        String
+  student         Student    @relation("StudentSubmissions", fields: [student_id], references: [student_id])
+  student_id      Int
+  assignment      Assignment @relation("AssignmentSubmissions", fields: [assignment_id], references: [assignment_id])
+  assignment_id   Int
+}
+
+// Define Assignment entity
+model Assignment {
+  assignment_id Int          @id @default(autoincrement())
+  faculty       Faculty      @relation("FacultyAssignments", fields: [faculty_id], references: [faculty_id])
+  faculty_id    Int
+  course        Course       @relation("CourseAssignments", fields: [course_id], references: [course_id])
+  course_id     Int
+  submissions   Submission[] @relation("AssignmentSubmissions")
+}
+
+// Define CommunicationLog entity
+model CommunicationLog {
+  log_id       Int           @id @default(autoincrement())
+  message      String
+  timestamp    DateTime
+  sender       String
+  student      Student?      @relation("StudentCommunicationLogs", fields: [student_id], references: [student_id])
+  student_id   Int?
+  faculty      Faculty?      @relation("FacultyCommunicationLogs", fields: [faculty_id], references: [faculty_id])
+  faculty_id   Int?
+  eventManager EventManager? @relation("EventManagerCommunicationLogs", fields: [manager_id], references: [manager_id])
+  manager_id   Int?
+}
+
+// Define Event entity
+model Event {
+  event_id      Int            @id @default(autoincrement())
+  name          String
+  description   String
+  start_date    DateTime
+  end_date      DateTime
+  organizer     String
+  status        String
+  manager       EventManager   @relation("EventManagerEvents", fields: [manager_id], references: [manager_id])
+  manager_id    Int
+  teams         Team[]         @relation("EventTeams")
+  registrations Registration[] @relation("EventRegistrations")
+}
+
+// Define Team entity
+model Team {
+  team_id     Int     @id @default(autoincrement())
+  name        String
+  description String?
+  event       Event   @relation("EventTeams", fields: [event_id], references: [event_id])
+  event_id    Int
+}
+
+// Define Participation entity
+model Participation {
+  participation_id Int          @id @default(autoincrement())
+  role             String
+  start_date       DateTime
+  end_date         DateTime
+  student          Student      @relation("StudentParticipations", fields: [student_id], references: [student_id])
+  student_id       Int
+  activity         String
+  eventManager     EventManager @relation("EventManagerParticipations", fields: [manager_id], references: [manager_id])
+  manager_id       Int
+}
+
+// Define Registration entity
+model Registration {
+  registration_id   Int      @id @default(autoincrement())
+  registration_date DateTime
+  status            String
+  event             Event    @relation("EventRegistrations", fields: [event_id], references: [event_id])
+  event_id          Int
+  faculty           Faculty  @relation("FacultyRegistrations", fields: [faculty_id], references: [faculty_id])
+  faculty_id        Int
+}
