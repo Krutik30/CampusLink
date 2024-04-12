@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #root{
   --col1: #57a5d9;
   --col2: gray;
