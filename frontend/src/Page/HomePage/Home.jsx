@@ -91,25 +91,25 @@ const Home = () => {
   }, []);
 
   return (
-    <SuspenseAndErrorBoundary>
-      <h1>Home</h1>
-      <div className="home-page">
-        <div className="chart">
-          <div ref={chartPieRef}></div>
-          <div className="description">
-            <h2>Pie Chart Example</h2>
-            <p>Description for the pie chart goes here.</p>
+      <SuspenseAndErrorBoundary>
+        {/* <h1>Home</h1>
+        <div className="home-page">
+          <div className="chart">
+            <div ref={chartPieRef}></div>
+            <div className="description">
+              <h2>Pie Chart Example</h2>
+              <p>Description for the pie chart goes here.</p>
+            </div>
           </div>
-        </div>
-        <div className="chart">
-          <div ref={chartNewRef}></div>
-          <div className="description">
-            <h2>Bar Chart Example</h2>
-            <p>Description for the bar chart goes here.</p>
+          <div className="chart">
+            <div ref={chartNewRef}></div>
+            <div className="description">
+              <h2>Bar Chart Example</h2>
+              <p>Description for the bar chart goes here.</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </SuspenseAndErrorBoundary>
+        </div> */}
+      </SuspenseAndErrorBoundary>
   );
 };
 

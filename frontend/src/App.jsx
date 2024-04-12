@@ -12,6 +12,7 @@ import Navbar from './Components/Navbar/Navbar';
 import CertificateDetails from './Page/Certificate/CertificateDetails';
 import Edit from './Page/Edit/Edit'
 import SuspenseAndErrorBoundary from './SuspendError';
+import Dashboard from './Components/Dashboard';
 
 export const BACKEND_URL = 'http://localhost:3000';
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <Dashboard/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,35 +1,59 @@
-import React from 'react'
 import './Navbar.css'
-import logo from '../../Images/download (1).png'
-import Dropdown from 'react-bootstrap/Dropdown'
-import { Link } from 'react-router-dom'
+import React, {useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.css';
+import { FaUserAlt } from "react-icons/fa";
+
 function Navbar() {
+    const [MenuOpen, setMenuOpen] = useState(false);
+    const [userMenuOpen, setuserMenuOpen] = useState(false);
+    const [Option, setOption] = useState('');
+    const [navbarFixed, setnavbarFixed] = useState(false);
+
+
+    const UserToggle = () => {
+        setuserMenuOpen(!userMenuOpen)
+
+        setMenuOpen(false)
+    }
+
+    const toggle = () => {
+        setMenuOpen(!MenuOpen)
+        setuserMenuOpen(false)
+
+    }
+
+    const handleOnOption = (Option) => {
+        setOption(Option)
+        setMenuOpen(false)
+    }
     return (
         <>
-            <nav>
-                <div className='s1'>
-                    <img src={logo} alt='logo' className='logo'></img>
-                    <div className="right">
-                        <div className="user">
-                            <Dropdown>
-                                <Dropdown.Toggle variant="" id="dropdown-basic" className='pe-5'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                    </svg>
-                                </Dropdown.Toggle>
+            <div className=''>
+            <div>
+                <nav className={`font-bold text-base  bg-blue-900 p-2 ${navbarFixed ? 'fixed top-16 left-0 w-full z-50' : ''}`}>
+                    <div className='flex justify-between'>
+                        <div className='flex mx-2 my-2 text-white font-extrabold text-lg'>
+                            CampusLink
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="/login">Login</Dropdown.Item>
-                                    <Dropdown.Item href="/signup">Signup</Dropdown.Item>
-                                    <Dropdown.Item href="/user/accountsettings">Profile</Dropdown.Item>
-                                    <Dropdown.Item href="/login">Logout</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                        </div>
+                        <div className=' cursor-pointer flex justify-end py-2' onClick={UserToggle}>
+                            <FaUserAlt className='text-2xl text-blue-100 mr-3' />
                         </div>
                     </div>
-                </div>
-            </nav>
-            <div className='s2'>
+                </nav>
+            </div>
+                {/* for user profile */}
+                <nav className={`cursor-pointer flex fixed py-2 bg-blue-900 ${userMenuOpen ? ' flex flex-col w-52 right-0 z-10' : 'hidden'}`}>
+                    <div className='text-left px-1.5 text-white text-lg text-semibold'>
+                        <p className='hover:text-emerald-300'>Profile</p>
+                        <p className='hover:text-emerald-300'>LogOut</p>
+                        <p className='hover:text-emerald-300'>Login</p>
+                    </div>
+                </nav>
+
+
+        </div>
+            {/* <div className='s2'>
                 {
                     SvgContainer(
                         [
@@ -61,7 +85,7 @@ function Navbar() {
                         ]
                     )
                 }
-            </div>
+            </div> */}
         </>
     )
 }
