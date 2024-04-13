@@ -92,23 +92,22 @@ const Home = () => {
 
   return (
       <SuspenseAndErrorBoundary>
-        {/* <h1>Home</h1>
-        <div className="home-page">
-          <div className="chart">
-            <div ref={chartPieRef}></div>
-            <div className="description">
+        <div className="home-page mx-8 my-20 grid grid-cols-1 md:grid-cols-2 p-2">
+          <div className="chart my-4 mx-8 mr-0">
+            <div className='flex justify-center h-full w-full' ref={chartPieRef}></div>
+            <div className="grid grid-cols-1 font-bold text-xl">
               <h2>Pie Chart Example</h2>
-              <p>Description for the pie chart goes here.</p>
+              <p className='flex justify-center'>Description for the pie chart goes here.</p>
             </div>
           </div>
-          <div className="chart">
-            <div ref={chartNewRef}></div>
+          <div className="chart my-4 mx-8 justify-center">
+            <div className='flex justify-center md:w-3/4' ref={chartNewRef}></div>
             <div className="description">
               <h2>Bar Chart Example</h2>
               <p>Description for the bar chart goes here.</p>
             </div>
           </div>
-        </div> */}
+        </div>
       </SuspenseAndErrorBoundary>
   );
 };

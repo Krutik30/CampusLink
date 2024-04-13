@@ -5,15 +5,15 @@
     margin: 20px;
   }
   
-  .chart {
+  /* .chart {
     width: 50%;
     text-align: center;
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px; /* Space below for writing */
-  }
+    margin-bottom: 30px; Space below for writing
+  } */
   
   .chart img {
     max-width: 100%;
@@ -21,9 +21,9 @@
     margin-bottom: 10px;
   }
   
-  .description {
+  /* .description {
     font-size: 16px;
-  }
+  } */
   
   .description h2 {
     margin-bottom: 10px;

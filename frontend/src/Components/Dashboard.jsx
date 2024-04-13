@@ -7,9 +7,10 @@ import { FaAlignJustify, FaChartArea } from "react-icons/fa";
 import { IoMdDocument } from "react-icons/io";
 import { BsList } from "react-icons/bs";
 
+
 function Dashboard() {
     const [Menu, setMenu] = useState(false);
-    const [pageTitle,setPageTitle] = useState('Dashboard')
+    const [pageTitle,setPageTitle] = useState('')
 
     const sideMenu = () => {
         setMenu(!Menu);
@@ -23,22 +24,22 @@ function Dashboard() {
     <div className='flex md:fixed'>
             <main className='hidden md:flex'>
 
-                <nav className='flex fixed flex-row w-14  h-screen bg-blue-900'>
+                <nav className='flex fixed flex-row w-16  h-screen bg-blue-900'>
                     < div className='' >
                         <div>
-                            <BsList className=' mt-3 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={sideMenu} />
-                            <LuLayoutDashboard className=' mt-5 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('DashBoard')} />
-                            <PiCertificateBold className=' mt-5 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('Certificate')} />
-                            <GrAchievement className=' mt-5 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('Achievement')} />
-                            <FaChartArea className=' mt-5 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('Analysis')}/>
-                            <IoMdDocument className=' mt-5 mx-3 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('Resume')}/>
+                            <BsList className=' mt-3 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={sideMenu} />
+                            <LuLayoutDashboard className=' mt-5 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('DashBoard')} />
+                            <PiCertificateBold className=' mt-5 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('Certificate')} />
+                            <GrAchievement className=' mt-5 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('Achievement')} />
+                            <FaChartArea className=' mt-5 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('Analysis')}/>
+                            <IoMdDocument className=' mt-5 mx-2 text-2xl text-white cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('Resume')}/>
                         </div>
                     </div>
                 </nav>
-                <nav className={`cursor-pointer mx-10 flex  py-2  bg-blue-900 ${Menu ? ' flex fixed flex-row w-48 h-screen' : 'hidden'}`}>
+                <nav className={`cursor-pointer mx-14 flex  py-2  bg-blue-900 ${Menu ? ' flex fixed flex-row w-48 h-screen' : 'hidden'}`}>
                     <div className=' px-4 text-white text-lg text-semibold'>
                         <div className='py-2 block'>
-                            <p className='hover:text-emerald-300 py-1'onClick={()=>handleClickOnIcon('Profile')}>Profile</p>
+                            <p className='hover:text-emerald-300 py-1'onClick={()=>handleClickOnIcon('Profile')}><a href ="/edit"></a>Profile</p>
                             <p className='hover:text-emerald-300 py-3'onClick={()=>handleClickOnIcon('DashBoard')}>Dashboard</p>
                             <p className='hover:text-emerald-300 py-3'onClick={()=>handleClickOnIcon('Certificate')}>Certificate</p>
                             <p className='hover:text-emerald-300 py-3'onClick={()=>handleClickOnIcon('Achievements')}>Achievements</p>
@@ -60,10 +61,10 @@ function Dashboard() {
             </main>
             {/* Dynamic name  */}
             <section className={`py-4 mx-12 px-10 ${Menu ?' mx-24 px-28 mr-0 ':'py-4 mx-12 px-10'}`} >
-                <div className='container px-5 mx-3'>
+                <div className=' px-5 mx-3'>
                     <h2 className=' font-semibold text-blue-900 font-sans'>{pageTitle}</h2>
                 </div>
-                <div className='container px-5 mx-3 lg:m-5'>
+                {/* <div className=' px-5 mx-3 lg:m-5'>
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col">
                             <div class="card">
@@ -84,7 +85,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
         </div>
   )
