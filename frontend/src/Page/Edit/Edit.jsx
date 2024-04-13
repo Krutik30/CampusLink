@@ -56,7 +56,6 @@ function EditableCertificateDetails() {
   return (
     <SuspenseAndErrorBoundary>
       <div>
-        <h2>View/Edit Certificate Details</h2>
         <div>
           <label htmlFor="certificateId">Email ID:</label>
           <input
