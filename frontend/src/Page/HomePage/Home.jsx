@@ -73,7 +73,7 @@ const optionsPie = {
   }]
 };
 
-const Home = () => {
+const Home = ({ menuOpen }) => {
   const chartPieRef = useRef(null);
   const chartNewRef = useRef(null);
 
@@ -91,7 +91,8 @@ const Home = () => {
   }, []);
 
   return (
-      <SuspenseAndErrorBoundary>
+    <SuspenseAndErrorBoundary>
+      <section className={`home-page ${menuOpen ? 'mx-24 px-28 mr-0': ''}`}> 
         <div className="home-page mx-8 my-20 grid grid-cols-1 md:grid-cols-2 p-2">
           <div className="chart my-4 mx-8 mr-0">
             <div className='flex justify-center h-full w-full' ref={chartPieRef}></div>
@@ -108,7 +109,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </SuspenseAndErrorBoundary>
+      </section>
+    </SuspenseAndErrorBoundary>
   );
 };
 
