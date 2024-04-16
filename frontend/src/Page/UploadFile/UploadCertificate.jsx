@@ -1,87 +1,110 @@
 import React from 'react';
 import './CertificateUpload.css';
-import Box from './component/Box';
-import { BACKEND_URL } from '../../App';
-import SuspenseAndErrorBoundary from '../../SuspendError';
 
-function CertificateUpload() {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+function Certificate() {
+  const [certificateName, setCertificateName] = useState('');
+  const [certificateFile, setCertificateFile] = useState(null);
+  const [uploadedCertificates, setUploadedCertificates] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
 
-    const formData = new FormData(event.target);
-    const fileInput = document.getElementById('certificateFile');
-    console.log(fileInput.value, fileInput.files[0].File)
-    // Append the file input to the FormData
-    formData.append('certificateFile', {
-      path: fileInput.value
-    });
-
-    const data = {};
-
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-    console.log(data)
-    try {
-      const response = await fetch(`${BACKEND_URL}/uploadCertificate`, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }).then(value => console.log(value));
-      if (response.ok) {
-        console.log('Certificate uploaded successfully!');
-      } else {
-        console.error('Error uploading certificate');
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const handleNameChange = (e) => {
+    setCertificateName(e.target.value);
   };
 
-  const user = JSON.parse(localStorage.getItem('user'))
-  console.log(user)
+  const handleFileChange = (e) => {
+    setCertificateFile(e.target.files[0]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here (e.g., send data to backend)
+    console.log({ certificateName,  selectedDate ,certificateFile, });
+
+    // Update uploaded certificates array with new certificate
+    const newCertificate = {
+      name: certificateName,
+      date: selectedDate,
+      file: certificateFile,
+    };
+    setUploadedCertificates([newCertificate, ...uploadedCertificates]);
+
+    // Reset form fields
+    setCertificateName('');
+    setSelectedDate('');
+    setCertificateFile(null);
+  };
+
+  const handledateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
 
   return (
-    <SuspenseAndErrorBoundary>
-      <div className="certificate-upload">
-        <Box />
-        <h1 id="uc">Upload Certificate</h1>
-        <form onSubmit={handleSubmit} action="/uploadCertificate" method="post" enctype="multipart/form-data">
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="eventEmail" defaultValue={user.email} />
-          </div>
-          <div>
-            <label htmlFor="certName">Certification Event Name:</label>
-            <input type="text" id="certName" name="eventName" />
-          </div>
-          <div>
-            <label htmlFor="eventDate">Certification Event Date:</label>
-            <input type="date" id="eventDate" name="eventDate" />
-          </div>
-          <div>
-            <label htmlFor="eventPlace">Event Place:</label>
-            <input type="text" id="eventPlace" name="eventPlace" />
-          </div>
-          <div>
-            <label htmlFor="eventType">Field of Event:</label>
-            <input type="text" id="eventType" name="eventType" />
-          </div>
-          <div>
-            <label htmlFor="mainActivity">Main Activity:</label>
-            <input type="text" id="mainActivity" name="mainActivity" />
-          </div>
-          <div>
-            <label htmlFor="certificateFile">Upload Certificate (PDF):</label>
-            <input type="file" id="certificateFile" name="certificateFile" accept=".pdf" />
-          </div>
-          <button type="submit">Upload</button>
-        </form>
-      </div>
-    </SuspenseAndErrorBoundary>
+    
+    <div className="certificate">
+      <h1>Upload Certificate</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="certificateName">Certificate Name:</label>
+        <input
+          type="text"
+          id="certificateName"
+          name="certificateName"
+          value={certificateName}
+          onChange={handleNameChange}
+          required
+        /><br /><br />
+
+<label htmlFor="selectedDate">Select Date:</label>
+        <input
+          type="date"
+          id="selectedDate"
+          name="selectedDate"
+          value={selectedDate}
+          onChange={handledateChange}
+          required
+        /><br /><br />
+
+        <label htmlFor="certificateFile">Upload Certificate:</label>
+        <input
+          type="file"
+          id="certificateFile"
+          name="certificateFile"
+          accept=".pdf, .doc, .docx"
+          onChange={handleFileChange}
+          required
+        /><br /><br />
+
+        <button type="submit">Upload</button>
+      </form>
+
+      {uploadedCertificates.length > 0 && (
+        <div className="certificateHistory">
+          <h1>Certificate History</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Certificate Name</th>
+                <th>Date</th>
+                <th>View Certificate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {uploadedCertificates.map((certificate, index) => (
+                <tr key={index}>
+                  <td>{certificate.file.name}</td>
+                  <td>{certificate.date}</td>
+                  <td>
+                    <a href={URL.createObjectURL(certificate.file)} target="_blank" rel="noopener noreferrer">View PDF</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+    
   );
 }
+
 
 export default CertificateUpload;
