@@ -1,27 +1,79 @@
-.userprofile{
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .certificate {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 70px;
+    background-color: #ffffff;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
     display: flex;
-    flex-direction:column;
-}
-.userprofilein{
-    display:flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="file"],
+  input[type="date"],
+  button {
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color:blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    margin-left: 220px;
+  }
+  
+  button:hover {
+    background-color: blue;
+  }
+  
+  .certificateHistory {
+    margin-top: 20px;
+  }
+  
+  table {
     width: 100%;
-    justify-content: center;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    gap: 20px  ;    
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
 
-}
-.userprofile .userprofilein .left{
-    width: 20%;
-    border: 1px solid rgb(207, 207, 207);
-    border-radius: 5px;
-    /* min-height: 60vh; */
-
-}
-.userprofile .userprofilein .right{
-    width: 60%;
-    border: 1px solid rgb(207, 207, 207);
-    border-radius: 5px;
-    /* min-height: 60vh; */
-
-}
+ 

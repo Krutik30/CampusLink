@@ -1,34 +1,38 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import UserSidebar from '../../Components/UserProfile/UserSidebar'
-import AccountSetting from '../../Components/UserProfile/AccountSetting'
-import './UserProfile.css'
-import ChangePassword from '../../Components/UserProfile/ChangePassword'
-import TimeTable from '../../Components/UserProfile/TimeTable'
-import SuspenseAndErrorBoundary from '../../SuspendError'
+import React from 'react';
+import './profile.css'; 
 
-function UserProfile() {
-    const {activepage} = useParams()
-    //alert(activepage) - > it will show alert if active page is working or not
-
-
+const Profile = () => {
   return (
-    <SuspenseAndErrorBoundary>
-      <div className='userprofile'>
-        {/* UserProfile,{activepage} */}
-        <div className="userprofilein">
-          <div className="left">
-            <UserSidebar activepage={activepage} />
-          </div>
-          <div className="right">
-            {activepage === 'accountsettings' && <AccountSetting />}
-            {activepage === 'changepassword' && <ChangePassword />}
-            {activepage === 'yourtimetable' && <TimeTable />}
-          </div>
-        </div>
+    <div className="profile-container">
+      <div className="input-group">
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" />
       </div>
-    </SuspenseAndErrorBoundary>
-  )
-}
+      <div className="input-group">
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" />
+      </div>
+      <div className="input-group">
+        <label htmlFor="bod">Date of Birth:</label>
+        <input type="date" id="bod" name="bod" />
+      </div>
+      <div className="input-group">
+        <label htmlFor="department">Department:</label>
+        <input type="text" id="department" name="department" placeholder="Enter your department" />
+      </div>
+      <div className="input-group">
+        <label htmlFor="year">Year:</label>
+        <input type="text" id="year" name="year" placeholder="Enter your year" />
+      </div>
+      <div className="input-group">
+        <label htmlFor="cgpa">CGPA:</label>
+        <input type="text" id="cgpa" name="cgpa" placeholder="Enter your CGPA" />
+      </div>
+      <div className="input-group">
+        <button className="upload-btn">Upload</button>
+      </div>
+    </div>
+  );
+};
 
-export default UserProfile
+export default Profile;
