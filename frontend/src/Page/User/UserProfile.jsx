@@ -17,10 +17,10 @@ function UserProfile() {
       <div className='userprofile'>
         {/* UserProfile,{activepage} */}
         <div className="userprofilein">
-          <div className="left">
+          <div className="left my-10">
             <UserSidebar activepage={activepage} />
           </div>
-          <div className="right">
+          <div className="right my-10">
             {activepage === 'accountsettings' && <AccountSetting />}
             {activepage === 'changepassword' && <ChangePassword />}
             {activepage === 'yourtimetable' && <TimeTable />}
