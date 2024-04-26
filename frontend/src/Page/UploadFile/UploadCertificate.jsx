@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CertificateUpload.css';
 
 function CertificateUpload() {
@@ -40,9 +40,9 @@ function CertificateUpload() {
 
   return (
     
-    <div className="certificate">
-      <h1>Upload Certificate</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="certificate flex flex-col justify-center my-20 w-3/4 mx-20 md:w-50 md:my-20 md:mx-52">
+      <h1 className='text-blue-900'>Upload Certificate</h1>
+      <form onSubmit={handleSubmit} >
         <label htmlFor="certificateName">Certificate Name:</label>
         <input
           type="text"
@@ -77,11 +77,11 @@ function CertificateUpload() {
       </form>
 
       {uploadedCertificates.length > 0 && (
-        <div className="certificateHistory">
+        <div className="certificateHistory flex flex-col w-100 my-10">
           <h1>Certificate History</h1>
           <table>
             <thead>
-              <tr>
+              <tr className=''>
                 <th>Certificate Name</th>
                 <th>Date</th>
                 <th>View Certificate</th>

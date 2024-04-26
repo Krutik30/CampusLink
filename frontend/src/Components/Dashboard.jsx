@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { LuLayoutDashboard } from "react-icons/lu";
 import { PiCertificateBold } from "react-icons/pi";
@@ -7,11 +8,13 @@ import { FaAlignJustify, FaChartArea } from "react-icons/fa";
 import { IoMdDocument } from "react-icons/io";
 import { BsList } from "react-icons/bs";
 import Home from '../Page/HomePage/Home';
+import UserProfile from '../Page/User/UserProfile';
 
 
 function Dashboard() {
     const [Menu, setMenu] = useState(false);
     const [pageTitle, setPageTitle] = useState('')
+    const navigate = useNavigate();
 
     const sideMenu = () => {
         setMenu(!Menu);
@@ -20,7 +23,8 @@ function Dashboard() {
 
     const handleClickOnIcon = (title) => {
         setPageTitle(title)
-    }
+        navigate(title)
+     }
     return (
         <section className='dashboard-container'>
             <div className='flex md:fixed'>
@@ -55,20 +59,20 @@ function Dashboard() {
                 <main className='md:hidden lg:hidden fixed bottom-0 w-full bg-blue-900'>
                     <div className='grid grid-cols-5 mx-14'>
                         <LuLayoutDashboard className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('')} />
-                        <PiCertificateBold className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' />
-                        <GrAchievement className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' />
-                        <FaChartArea className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' />
-                        <IoMdDocument className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' />
+                        <PiCertificateBold className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Certificate')} />
+                        <GrAchievement className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Achievements')} />
+                        <FaChartArea className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Analysis')} />
+                        <IoMdDocument className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('/Resume')}/>
                     </div>
                 </main>
                 {/* Dynamic name  */}
-                <section className={`py-4 mx-12 px-10 ${Menu ? ' mx-24 px-28 mr-0 ' : 'py-4 mx-12 px-10'}`} >
-                    <div className=' px-5 mx-3 my-4'>
+                {/* <section className={`py-4 mx-12 px-10 ${Menu ? ' mx-24 px-28 mr-0 ' : 'py-4 mx-12 px-10'}`} >
+                    <div className=' px-5 mx-3 my-5'>
                         <h2 className=' font-semibold text-blue-900 font-sans'>{pageTitle}</h2>
                     </div>
-                </section>
+                </section> */}
             </div>
-            <Home menuOpen={Menu}/>
+            {/* <Home menuOpen={Menu}/> */}
         </section>
 
     )

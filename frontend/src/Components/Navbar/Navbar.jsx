@@ -2,14 +2,22 @@ import './Navbar.css'
 import React, {useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const [MenuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setuserMenuOpen] = useState(false);
     const [Option, setOption] = useState('');
     const [navbarFixed, setnavbarFixed] = useState(false);
+    const [pageTitle,setPageTitle] = useState('')
+    const navigate = useNavigate();
 
 
+
+    const handleClickOnIcon = (title) => {
+        setPageTitle(title)
+        navigate(title)
+     }
     const UserToggle = () => {
         setuserMenuOpen(!userMenuOpen)
 
@@ -45,7 +53,7 @@ function Navbar() {
                 {/* for user profile */}
                 <nav className={`cursor-pointer flex fixed py-2 bg-blue-900 ${userMenuOpen ? ' flex flex-col top-16 w-52 right-0 z-10' : 'hidden'}`}>
                     <div className='text-left px-1.5 text-white text-lg text-semibold'>
-                        <p className='hover:text-emerald-300'>Profile</p>
+                        <p className='hover:text-emerald-300' onClick={()=>handleClickOnIcon('/userprofile')}>Profile</p>
                         <p className='hover:text-emerald-300'>LogOut</p>
                         <p className='hover:text-emerald-300'>Login</p>
                     </div>
