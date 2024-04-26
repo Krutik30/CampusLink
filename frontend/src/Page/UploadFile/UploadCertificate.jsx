@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CertificateUpload.css';
 
-function Certificate() {
+function CertificateUpload() {
   const [certificateName, setCertificateName] = useState('');
   const [certificateFile, setCertificateFile] = useState(null);
   const [uploadedCertificates, setUploadedCertificates] = useState([]);
@@ -107,4 +107,4 @@ function Certificate() {
 }
 
 
-export default Certificate;
+export default CertificateUpload;
