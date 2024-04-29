@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -24,7 +24,7 @@ function Dashboard() {
     const handleClickOnIcon = (title) => {
         setPageTitle(title)
         navigate(title)
-     }
+    }
     return (
         <section className='dashboard-container'>
             <div className='flex md:fixed'>
@@ -59,10 +59,10 @@ function Dashboard() {
                 <main className='md:hidden lg:hidden fixed bottom-0 w-full bg-blue-900'>
                     <div className='grid grid-cols-5 mx-14'>
                         <LuLayoutDashboard className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('')} />
-                        <PiCertificateBold className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Certificate')} />
-                        <GrAchievement className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Achievements')} />
-                        <FaChartArea className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400'onClick={()=>handleClickOnIcon('/Analysis')} />
-                        <IoMdDocument className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={()=>handleClickOnIcon('/Resume')}/>
+                        <PiCertificateBold className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('/Certificate')} />
+                        <GrAchievement className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('/Achievements')} />
+                        <FaChartArea className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('/Analysis')} />
+                        <IoMdDocument className='  m-3  mx-3 text-2xl text-white  cursor-pointer hover:text-emerald-400' onClick={() => handleClickOnIcon('/Resume')} />
                     </div>
                 </main>
                 {/* Dynamic name  */}

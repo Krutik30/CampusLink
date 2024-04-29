@@ -13,8 +13,6 @@ model users {
     name     String? @map("full_name") @db.VarChar(255)
     password String
 
-    createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
-
     userDetails userDetails? @relation("user_details")
 }
 
@@ -36,18 +34,49 @@ model userDetails {
 
     roleId    Int   @map("role_id")
     courseIds Int[] @map("course_ids")
-    teamIds   Int[] @map("team_ids")
 
-    role         role    @relation("user_details_role", fields: [roleId], references: [roleId], map: "role_id_key")
-    user         users   @relation("user_details", fields: [referenceId], references: [userId], map: "user_id_key")
-    eventManager event[] @relation("event_manager")
-
+    role         role          @relation("user_details_role", fields: [roleId], references: [roleId], map: "role_id_key")
+    user         users         @relation("user_details", fields: [referenceId], references: [userId], map: "user_id_key", onDelete: Cascade, onUpdate: NoAction)
+    eventManager event[]       @relation("event_manager")
+    certificate  certificate[] @relation("user_details_certificate")
+    teamManagement teamManagement[] @relation("user_details_team_management")
     @@map("user_details")
 }
 
+model teamManagement {
+    teamName String @map("team_name")
+    userDetailId Int @map("user_detail_id")
+    leader Boolean 
+
+    team team @relation("team_management", fields: [teamName], references: [name], map: "team_id_key")
+    userDetail userDetails @relation("user_details_team_management", fields: [userDetailId], references: [referenceId], map: "user_detail_id_key")
+    @@id([teamName, userDetailId])
+}
+
 model team {
-    name String @id @map("team_id")
-    eventIds String[] @map("event_ids")
+    name     String   @id @map("team_id")
+    teamSize Int      @map("team_size")
+    teamSlogan String @map("team_slogan")
+    teamDescription String @map("team_description")
+    teamLogo String @map("team_logo") @db.Text
+    teamStatus String @map("team_status")
+
+    // eventIds String[] @map("event_ids")
+    // teamLead Int      @map("team_lead")
+    // teamMates Int[]    @map("team_mates")
+
+    teamManagement teamManagement[] @relation("team_management")
+    certificate certificate[] @relation("team_certificate")
+    eventMangement eventManagement[] @relation("team_event_management")
+}
+
+model eventManagement {
+    eventId Int @map("event_id")
+    teamName String @map("team_name")
+
+    event event @relation("event_management", fields: [eventId], references: [eventId], map: "event_id_key")
+    team team @relation("team_event_management", fields: [teamName], references: [name], map: "team_id_key")
+    @@id([eventId, teamName])
 }
 
 model course {
@@ -68,19 +97,33 @@ model event {
     organizer   String
     status      String
     managerId   Int      @map("manager_id")
-    teamIds     Int[]    @map("team_ids")
 
-    user      userDetails @relation("event_manager", fields: [managerId], references: [referenceId], map: "event_manager_id")
-    eventTeam eventTeam[] @relation("event_relation")
+    user        userDetails   @relation("event_manager", fields: [managerId], references: [referenceId], map: "event_manager_id")
+    certificate certificate[] @relation("event_certificate")
+    eventManagement eventManagement[] @relation("event_management")
 }
 
-model eventTeam {
-    eventId Int @map("event_id")
-    teamId  Int @map("team_id")
+model certificate {
+    certificateId   Int             @id @default(autoincrement()) @map("certificate_id")
+    eventId         Int             @map("event_id")
+    userDetailId    Int             @map("user_detail_id")
+    teamName        String          @map("team_name")
+    certificate     String          @map("certificate") @db.Text
+    certificateType String          @map("certificate_type")
+    certificateName String          @map("certificate_name")
+    description     String
+    certificateDate DateTime        @map("certificate_date")
+    status          CertificateType
 
-    event event @relation("event_relation", fields: [eventId], references: [eventId], map: "event_id_key")
-    // team  team  @relation("team_relation", fields: [teamId], references: [teamId], map: "team_id_key")
-
-    @@id([eventId, teamId])
-    @@map("event_teams")
+    event      event       @relation("event_certificate", fields: [eventId], references: [eventId], map: "event_id_key")
+    userDetail userDetails @relation("user_details_certificate", fields: [userDetailId], references: [referenceId], map: "user_detail_id_key")
+    team       team        @relation("team_certificate", fields: [teamName], references: [name], map: "team_id_key")
 }
+
+enum CertificateType {
+    Participation
+    Winner
+    RunnerUp
+    Special
+}
+

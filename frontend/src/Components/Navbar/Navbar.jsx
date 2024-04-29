@@ -1,5 +1,5 @@
 import './Navbar.css'
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import { FaUserAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ function Navbar() {
     const [userMenuOpen, setuserMenuOpen] = useState(false);
     const [Option, setOption] = useState('');
     const [navbarFixed, setnavbarFixed] = useState(false);
-    const [pageTitle,setPageTitle] = useState('')
+    const [pageTitle, setPageTitle] = useState('')
     const navigate = useNavigate();
 
 
@@ -17,7 +17,7 @@ function Navbar() {
     const handleClickOnIcon = (title) => {
         setPageTitle(title)
         navigate(title)
-     }
+    }
     const UserToggle = () => {
         setuserMenuOpen(!userMenuOpen)
 
@@ -36,9 +36,9 @@ function Navbar() {
     }
     return (
 
+        <div className='z-10'>
             <div>
-            <div>
-                <nav className={`font-bold fixed top-0 w-full   text-base  bg-blue-900 p-2 ${navbarFixed ? 'fixed top-0 left-0 w-full z-50' : ''}`}>
+                <nav className={`font-bold fixed top-0 w-full   text-base  bg-blue-900 p-2 ${navbarFixed ? 'fixed top-0 left-0 w-full z-50' : 'z-50'}`}>
                     <div className='flex justify-between'>
                         <div className='flex mx-2 my-2 text-white font-extrabold text-lg'>
                             CampusLink
@@ -50,14 +50,14 @@ function Navbar() {
                     </div>
                 </nav>
             </div>
-                {/* for user profile */}
-                <nav className={`cursor-pointer flex fixed py-2 bg-blue-900 ${userMenuOpen ? ' flex flex-col top-16 w-52 right-0 z-10' : 'hidden'}`}>
-                    <div className='text-left px-1.5 text-white text-lg text-semibold'>
-                        <p className='hover:text-emerald-300' onClick={()=>handleClickOnIcon('/userprofile')}>Profile</p>
-                        <p className='hover:text-emerald-300'>LogOut</p>
-                        <p className='hover:text-emerald-300'>Login</p>
-                    </div>
-                </nav>
+            {/* for user profile */}
+            <nav className={`cursor-pointer flex fixed py-2 bg-blue-900 ${userMenuOpen ? ' flex flex-col top-16 w-52 right-0 z-10' : 'hidden'}`}>
+                <div className='text-left px-1.5 text-white text-lg text-semibold'>
+                    <p className='hover:text-emerald-300' onClick={() => handleClickOnIcon('/userprofile')}>Profile</p>
+                    <p className='hover:text-emerald-300'>LogOut</p>
+                    <p className='hover:text-emerald-300'>Login</p>
+                </div>
+            </nav>
 
 
         </div>
@@ -66,11 +66,11 @@ function Navbar() {
 
 export default Navbar
 
-export const SvgContainer = (svgArray) =>{
+export const SvgContainer = (svgArray) => {
     return (
         <>
             {
-                svgArray.map((svg, index )=> (
+                svgArray.map((svg, index) => (
                     <div key={index}>
                         {svg}_____
                     </div>
